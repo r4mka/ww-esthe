@@ -29,6 +29,7 @@
   --muted: #777777;
   --line: #d6d6d2;
   --accent: #444444;
+  --header-height: 80px;
 }
 
 @theme inline {
@@ -51,6 +52,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100svh;
+  padding-top: var(--header-height);
 }
 
 #top main {
@@ -159,6 +161,10 @@ p {
 }
 
 @media (min-width: 640px) {
+  #top {
+    padding-top: var(--header-height);
+  }
+
   .section-shell {
     padding-bottom: 5.75rem;
     padding-left: 2rem;

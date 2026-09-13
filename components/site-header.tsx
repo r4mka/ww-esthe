@@ -29,7 +29,7 @@ export function SiteHeader() {
         />
       </Link>
       <button
-        className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+        className={styles.menuButton}
         type="button"
         aria-controls="primary-navigation"
         aria-expanded={isMenuOpen}
@@ -41,13 +41,11 @@ export function SiteHeader() {
         <span className="block h-px w-5 bg-current" />
       </button>
       <nav
-        className={`${styles.nav} ${isMenuOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
+        className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
         id="primary-navigation"
         aria-label="Primary navigation"
       >
-        <ul
-          className={`${styles.navList} flex-col gap-4 border-t border-(--line) pt-4 md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:pt-0`}
-        >
+        <ul className={styles.navList}>
           <li>
             <Link href="/zabiegi" onClick={closeMenu}>
               Zabiegi
