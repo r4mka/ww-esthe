@@ -13,12 +13,16 @@ export type Treatment = {
   faqs: { question: string; answer: string }[];
 };
 
-export const treatmentImages = [
-  "/images/702902875_18062186222697649_8449637741904313717_n.jpg",
-  "/images/491432162_18015506234697649_5081887183424975070_n.jpg",
-  "/images/650099679_18052926815697649_2857778446659390710_n.jpg",
-  "/images/798316773_18078078236697649_7996895775579899406_n.jpg",
-];
+export const treatmentImages: Record<string, string> = {
+  "modelowanie-ust": "/images/lips/powiekszanie ust.JPG",
+  "stymulatory-tkankowe": "/images/IMG_5966.PNG",
+  "makijaz-permanentny-brwi": "/images/brwi perm/brwi.jpg",
+  "makijaz-permanentny-ust": "/images/lips_pmu/powiekszanie usta.JPG",
+  "mezoterapia-mikroiglowa": "/images/mezo/mezoterapia.JPG",
+  "rf-radiofrekwencja": "/images/IMG_5968.PNG",
+  "laserowe-usuwanie-brwi": "/images/brwi perm/IMG_2127.JPG",
+  peelingi: "/images/IMG_5989.PNG",
+};
 
 export const treatments: Treatment[] = [
   {
@@ -335,8 +339,5 @@ export function getTreatment(slug: string) {
 }
 
 export function getTreatmentImage(slug: string) {
-  const treatmentIndex = treatments.findIndex(
-    (treatment) => treatment.slug === slug,
-  );
-  return treatmentImages[treatmentIndex % treatmentImages.length];
+  return treatmentImages[slug] ?? "/images/hero.jpg";
 }

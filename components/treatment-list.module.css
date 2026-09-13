@@ -15,7 +15,13 @@
 }
 
 .imageWrap {
-  background: #ded7cd;
+  background: linear-gradient(
+    135deg,
+    rgba(216, 208, 198, 0.9),
+    rgba(243, 243, 241, 0.7)
+  );
+  border: 1px solid rgba(32, 32, 32, 0.05);
+  box-shadow: 0 14px 28px rgba(32, 32, 32, 0.04);
   max-width: 30rem;
   overflow: hidden;
 }
@@ -23,8 +29,10 @@
 .image {
   aspect-ratio: 4 / 5;
   display: block;
+  filter: saturate(0.88) contrast(1.03);
   height: auto;
   object-fit: cover;
+  transform: scale(1.02);
   width: 100%;
 }
 
@@ -131,7 +139,7 @@
   padding-top: 0.75rem;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 640px) {
   .row {
     align-items: center;
     gap: clamp(3rem, 10vw, 9rem);

@@ -30,14 +30,14 @@
   color: var(--foreground);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 640px) {
   .siteFooter {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1024px) {
   .siteFooter {
     padding-left: 0;
     padding-right: 0;
