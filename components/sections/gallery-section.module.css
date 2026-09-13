@@ -1,0 +1,13 @@
+.galleryPlaceholder {
+  align-items: center;
+  background: #ded7cd;
+  color: #8e8274;
+  display: flex;
+  justify-content: center;
+  min-height: 22rem;
+}
+
+.galleryPlaceholder span {
+  border: 1px dashed currentColor;
+  padding: 0.6rem 0.8rem;
+}

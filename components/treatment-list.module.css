@@ -1,0 +1,184 @@
+.list {
+  display: grid;
+  gap: 4rem;
+  max-width: 1080px;
+}
+
+.item {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4rem;
+}
+
+.row {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.imageWrap {
+  background: #ded7cd;
+  max-width: 30rem;
+  overflow: hidden;
+}
+
+.image {
+  aspect-ratio: 4 / 5;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.copy {
+  align-self: center;
+}
+
+.number {
+  color: var(--accent);
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.copy h2 {
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  margin-bottom: 1rem;
+}
+
+.copy p {
+  max-width: 30rem;
+}
+
+.meta {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  max-width: 30rem;
+  padding-top: 1rem;
+}
+
+.meta > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.link {
+  color: var(--foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.link > span {
+  display: inline-block;
+  font-size: 1rem;
+  margin-left: 0.35rem;
+  transition: transform 180ms ease;
+}
+
+.link:hover > span {
+  transform: translateX(0.3rem);
+}
+
+.compact {
+  gap: 1.5rem;
+  max-width: none;
+}
+
+.compact .item {
+  padding-bottom: 1.5rem;
+}
+
+.compact .row {
+  display: block;
+  gap: 0.75rem;
+}
+
+.compact .imageWrap {
+  margin-bottom: 0.5rem;
+  max-width: none;
+}
+
+.compact .image {
+  aspect-ratio: 4 / 3;
+}
+
+.compact .copy {
+  padding: 0 0.25rem;
+}
+
+.compact .number {
+  margin-bottom: 0.75rem;
+}
+
+.compact .copy h2 {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.compact .copy p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.compact .meta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+}
+
+@media (min-width: 700px) {
+  .row {
+    align-items: center;
+    gap: clamp(3rem, 10vw, 9rem);
+    grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1fr);
+  }
+
+  .item:nth-child(even) .row {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
+  }
+
+  .item:nth-child(even) .imageWrap {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .item:nth-child(even) .copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .compact {
+    gap: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .compact .item {
+    border-bottom: 0;
+    display: flex;
+    padding-bottom: 0;
+  }
+
+  .compact .row,
+  .compact .item:nth-child(even) .row {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .compact .copy,
+  .compact .item:nth-child(even) .copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .compact .meta {
+    margin-top: auto;
+  }
+}

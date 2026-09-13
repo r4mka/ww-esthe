@@ -1,0 +1,40 @@
+.testimonialSection {
+  text-align: center;
+}
+
+.testimonialSection blockquote {
+  margin: 0 auto 2rem;
+  max-width: 42rem;
+}
+
+.testimonialSection blockquote p {
+  color: var(--foreground);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.testimonialSection cite {
+  color: var(--muted);
+  font-style: normal;
+}
+
+.carouselControls {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.carouselControls button {
+  background: transparent;
+  border: 0;
+  color: var(--foreground);
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}
+
+.carouselControls span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}

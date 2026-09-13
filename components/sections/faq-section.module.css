@@ -1,0 +1,20 @@
+.faqList {
+  border-top: 1px solid var(--line);
+}
+
+.faqList details {
+  border-bottom: 1px solid var(--line);
+  padding: 1.15rem 0;
+}
+
+.faqList summary {
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 500;
+  list-style-position: outside;
+  padding-right: 1rem;
+}
+
+.faqList details p {
+  margin: 1rem 0 0 1rem;
+}
