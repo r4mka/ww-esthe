@@ -29,7 +29,10 @@
   --muted: #777777;
   --line: #d6d6d2;
   --accent: #444444;
+  --beige: #76614d;
   --header-height: 80px;
+  --foter-heading: #fffdf9;
+  --text: #f7f4ef;
 }
 
 @theme inline {
