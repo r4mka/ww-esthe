@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import Link from "next/link";
+import { CTAButton } from "../cta-button";
 import styles from "./hero-section.module.css";
 
 export function HeroSection() {
@@ -26,15 +28,13 @@ export function HeroSection() {
         </p>
 
         <div className={styles.heroActions}>
-          <a className={`${styles.heroButton} button`} href="#contact">
-            Umów konsultację
-          </a>
-          <a
+          <CTAButton className={styles.heroButton}>Umów konsultację</CTAButton>
+          <Link
             className={`${styles.heroSecondaryButton} button button-secondary`}
-            href="#services"
+            href="/zabiegi"
           >
             Zobacz usługi
-          </a>
+          </Link>
         </div>
       </div>
     </section>

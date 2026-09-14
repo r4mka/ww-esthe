@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CTAButton } from "./cta-button";
 
 type PageIntroProps = {
   title: string;
@@ -12,9 +12,7 @@ export function PageIntro({ eyebrow, title, description }: PageIntroProps) {
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h1>{title}</h1>
       <p>{description}</p>
-      <Link className="button" href="/kontakt">
-        Umów konsultację
-      </Link>
+      <CTAButton>Umów konsultację</CTAButton>
     </header>
   );
 }
