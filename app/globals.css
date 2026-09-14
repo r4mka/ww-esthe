@@ -169,10 +169,7 @@ p {
   }
 
   .section-shell {
-    padding-bottom: 5.75rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 5.75rem;
+    padding: 5.75rem 2rem;
   }
 
   .section-tinted {

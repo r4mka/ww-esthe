@@ -14,7 +14,7 @@ export function FaqSection() {
     >
       <div className="section-heading">
         <p className="eyebrow">Informacje</p>
-        <h2 id="faq-title">Everything You&apos;ve Ever Wanted to Ask</h2>
+        <h2 id="faq-title">Wszystko o co chciałabyś zapytać</h2>
       </div>
       <div className={styles.faqList}>
         {questions.map((question) => (
