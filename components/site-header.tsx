@@ -52,7 +52,7 @@ export function SiteHeader() {
             </Link>
           </li>
           <li>
-            <Link href="/#gallery" onClick={closeMenu}>
+            <Link href="/galeria" onClick={closeMenu}>
               Galeria
             </Link>
           </li>

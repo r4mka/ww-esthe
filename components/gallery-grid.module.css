@@ -1,0 +1,122 @@
+.grid {
+  display: grid;
+  gap: 0.15rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.thumbnail {
+  aspect-ratio: 4 / 5;
+  background: var(--surface);
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+}
+
+.thumbnail img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 250ms ease;
+  width: 100%;
+}
+
+.thumbnail:hover img,
+.thumbnail:focus-visible img {
+  transform: scale(1.04);
+}
+
+.viewer {
+  background: rgba(20, 20, 18, 0.98);
+  inset: 0;
+  position: fixed;
+  z-index: 20;
+}
+
+.closeButton {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0.75rem;
+  position: fixed;
+  right: 0.5rem;
+  top: 0.5rem;
+  z-index: 2;
+}
+
+.viewerScroll {
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.viewerItem {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 3.5rem 1rem 2rem;
+  scroll-snap-align: start;
+}
+
+.viewerItem > img {
+  max-height: 68vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.description {
+  color: #fff;
+  max-width: 36rem;
+  padding: 1rem 0 0;
+  width: 100%;
+}
+
+.description p {
+  color: inherit;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  margin: 0 0 0.5rem;
+  overflow: hidden;
+}
+
+.description p.expanded {
+  display: block;
+}
+
+.readMore {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 0.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .viewerItem {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbnail img {
+    transition: none;
+  }
+
+  .viewerScroll {
+    scroll-snap-type: none;
+  }
+}
