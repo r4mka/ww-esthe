@@ -1,3 +1,5 @@
+import { GalleryGrid } from "@/components/gallery-grid";
+import Link from "next/link";
 import styles from "./gallery-section.module.css";
 
 export function GallerySection() {
@@ -7,20 +9,17 @@ export function GallerySection() {
       id="gallery"
       aria-labelledby="gallery-title"
     >
-      <div className="section-heading section-heading-row">
+      <div className="section-heading">
         <div>
           <p className="eyebrow">Atmosfera</p>
           <h2 id="gallery-title">Moje prace</h2>
         </div>
-        <p>Galeria zdjęć do uzupełnienia w kolejnym kroku.</p>
+        <p>Zobacz efekty zabiegów i poznaj estetykę WW-Esthe.</p>
       </div>
-      <div
-        className={styles.galleryPlaceholder}
-        aria-label="Miejsce na galerię zdjęć"
-        role="img"
-      >
-        <span>Galeria zdjęć</span>
-      </div>
+      <GalleryGrid className={styles.fullWidthGallery} previewCount={3} />
+      <Link className="button button-secondary" href="/galeria">
+        Zobacz całą galerię
+      </Link>
     </section>
   );
 }

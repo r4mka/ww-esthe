@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 
 import styles from "./gallery-grid.module.css";
 
@@ -115,10 +115,76 @@ const galleryItems = [
   },
 ];
 
-export function GalleryGrid() {
+type GalleryGridProps = {
+  className?: string;
+  previewCount?: number;
+};
+
+export function GalleryGrid({ className, previewCount }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [previewStart, setPreviewStart] = useState(0);
+  const didSwipe = useRef(false);
+  const swipeStartX = useRef<number | null>(null);
   const viewerScrollRef = useRef<HTMLDivElement>(null);
+
+  const movePreview = (direction: "next" | "previous") => {
+    if (previewCount === undefined) {
+      return;
+    }
+
+    setPreviewStart((currentStart) => {
+      const lastStart = Math.max(galleryItems.length - previewCount, 0);
+      const nextStart =
+        direction === "next"
+          ? currentStart + previewCount
+          : currentStart - previewCount;
+
+      if (nextStart > lastStart) {
+        return 0;
+      }
+
+      if (nextStart < 0) {
+        return lastStart;
+      }
+
+      return nextStart;
+    });
+  };
+
+  const handlePreviewPointerDown = (
+    event: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    if (previewCount !== undefined && event.isPrimary) {
+      didSwipe.current = false;
+      swipeStartX.current = event.clientX;
+    }
+  };
+
+  const handlePreviewPointerUp = (
+    event: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    if (
+      previewCount === undefined ||
+      !event.isPrimary ||
+      swipeStartX.current === null
+    ) {
+      return;
+    }
+
+    const swipeDistance = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+
+    if (Math.abs(swipeDistance) >= 50) {
+      didSwipe.current = true;
+      movePreview(swipeDistance < 0 ? "next" : "previous");
+    }
+  };
+
+  const handlePreviewPointerCancel = () => {
+    didSwipe.current = false;
+    swipeStartX.current = null;
+  };
 
   useEffect(() => {
     if (activeIndex === null) {
@@ -154,30 +220,61 @@ export function GalleryGrid() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const renderThumbnail = (
+    item: (typeof galleryItems)[number],
+    index: number,
+  ) => (
+    <button
+      className={styles.thumbnail}
+      key={item.src}
+      type="button"
+      onClick={() => {
+        if (didSwipe.current) {
+          didSwipe.current = false;
+          return;
+        }
+
+        setActiveIndex(index);
+        setExpandedIndex(null);
+      }}
+      aria-label={`Otwórz zdjęcie: ${item.alt}`}
+    >
+      <Image
+        src={item.src}
+        alt={item.alt}
+        width={400}
+        height={400}
+        sizes="(max-width: 639px) 33vw, 25vw"
+      />
+    </button>
+  );
+
   return (
     <>
-      <div className={styles.grid}>
-        {galleryItems.map((item, index) => (
-          <button
-            className={styles.thumbnail}
-            key={item.src}
-            type="button"
-            onClick={() => {
-              setActiveIndex(index);
-              setExpandedIndex(null);
-            }}
-            aria-label={`Otwórz zdjęcie: ${item.alt}`}
+      {previewCount === undefined ? (
+        <div className={`${styles.grid} ${className ?? ""}`}>
+          {galleryItems.map(renderThumbnail)}
+        </div>
+      ) : (
+        <div
+          className={`${styles.previewViewport} ${className ?? ""}`}
+          onPointerCancel={handlePreviewPointerCancel}
+          onPointerDown={handlePreviewPointerDown}
+          onPointerUp={handlePreviewPointerUp}
+        >
+          <div
+            className={styles.previewTrack}
+            style={
+              {
+                "--preview-item-count": galleryItems.length,
+                transform: `translateX(-${(previewStart / galleryItems.length) * 100}%)`,
+              } as CSSProperties
+            }
           >
-            <Image
-              src={item.src}
-              alt={item.alt}
-              width={400}
-              height={400}
-              sizes="(max-width: 639px) 33vw, 25vw"
-            />
-          </button>
-        ))}
-      </div>
+            {galleryItems.map(renderThumbnail)}
+          </div>
+        </div>
+      )}
 
       {activeIndex !== null && (
         <div

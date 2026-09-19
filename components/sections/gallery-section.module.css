@@ -1,13 +1,19 @@
-.galleryPlaceholder {
-  align-items: center;
-  background: #ded7cd;
-  color: #8e8274;
-  display: flex;
-  justify-content: center;
-  min-height: 22rem;
+.fullWidthGallery {
+  margin-left: -1.25rem;
+  width: calc(100% + 2.5rem);
 }
 
-.galleryPlaceholder span {
-  border: 1px dashed currentColor;
-  padding: 0.6rem 0.8rem;
+@media (min-width: 640px) and (max-width: 1023px) {
+  .fullWidthGallery {
+    margin-left: -2rem;
+    width: calc(100% + 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .fullWidthGallery {
+    margin: 0 auto;
+    max-width: 1180px;
+    width: 100%;
+  }
 }
