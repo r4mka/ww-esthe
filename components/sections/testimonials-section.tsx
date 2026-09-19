@@ -1,4 +1,37 @@
+"use client";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
 import styles from "./testimonials-section.module.css";
+
+const testimonials = [
+  {
+    quote:
+      "Od dawna szukałam miejsca, w którym ktoś naprawdę słucha potrzeb klientki. Jestem bardzo zadowolona z efektu.",
+    author: "Weronika",
+  },
+  {
+    quote:
+      "Zabieg był wykonany niezwykle starannie, a atmosfera podczas wizyty bardzo przyjemna i spokojna.",
+    author: "Marta",
+  },
+  {
+    quote:
+      "Efekt jest subtelny i naturalny, dokładnie taki, na jakim mi zależało. Otrzymałam też świetne wskazówki dotyczące pielęgnacji.",
+    author: "Paulina",
+  },
+  {
+    quote:
+      "To była moja pierwsza wizyta i od razu poczułam, że jestem w dobrych rękach. Na pewno będę wracać.",
+    author: "Katarzyna",
+  },
+  {
+    quote:
+      "Profesjonalna konsultacja, delikatne wykonanie i piękny rezultat. Wizyta spełniła wszystkie moje oczekiwania.",
+    author: "Monika",
+  },
+];
 
 export function TestimonialsSection() {
   return (
@@ -10,19 +43,126 @@ export function TestimonialsSection() {
         <p className="eyebrow">Opinie</p>
         <h2 id="testimonials-title">Co mówią klientki</h2>
       </div>
-      <blockquote>
-        <p>“Tutaj pojawi się krótka opinia klientki.”</p>
-        <cite>Imię klientki</cite>
-      </blockquote>
+      <TestimonialCarousel />
+    </section>
+  );
+}
+
+function TestimonialCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const swipeStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (isPaused) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((currentIndex) =>
+        currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1,
+      );
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused]);
+
+  const moveTo = (direction: "next" | "previous") => {
+    setActiveIndex((currentIndex) => {
+      if (direction === "next") {
+        return currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1;
+      }
+
+      return currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
+    });
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.isPrimary) {
+      swipeStartX.current = event.clientX;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setIsPaused(true);
+    }
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!event.isPrimary || swipeStartX.current === null) {
+      return;
+    }
+
+    const swipeDistance = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+    event.currentTarget.releasePointerCapture(event.pointerId);
+
+    if (Math.abs(swipeDistance) >= 50) {
+      moveTo(swipeDistance < 0 ? "next" : "previous");
+    }
+
+    setIsPaused(false);
+  };
+
+  const handlePointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
+    swipeStartX.current = null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    setIsPaused(false);
+  };
+
+  return (
+    <div
+      onFocus={() => setIsPaused(true)}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsPaused(false);
+        }
+      }}
+    >
+      <div
+        className={styles.carouselViewport}
+        onPointerCancel={handlePointerCancel}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+      >
+        <div
+          className={styles.carouselTrack}
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          aria-live="polite"
+        >
+          {testimonials.map((testimonial, index) => (
+            <blockquote
+              className={styles.carouselSlide}
+              key={testimonial.quote}
+              aria-hidden={index !== activeIndex}
+            >
+              <p>“{testimonial.quote}”</p>
+              <cite>{testimonial.author}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </div>
       <div className={styles.carouselControls} aria-label="Nawigacja opinii">
-        <button type="button" aria-label="Poprzednia opinia">
-          ←
+        <button
+          type="button"
+          aria-label="Poprzednia opinia"
+          onClick={() => moveTo("previous")}
+        >
+          <ChevronLeft />
         </button>
-        <span>01 / 03</span>
-        <button type="button" aria-label="Następna opinia">
-          →
+        <span aria-label={`Opinia ${activeIndex + 1} z ${testimonials.length}`}>
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(testimonials.length).padStart(2, "0")}
+        </span>
+        <button
+          type="button"
+          aria-label="Następna opinia"
+          onClick={() => moveTo("next")}
+        >
+          <ChevronRight />
         </button>
       </div>
-    </section>
+    </div>
   );
 }

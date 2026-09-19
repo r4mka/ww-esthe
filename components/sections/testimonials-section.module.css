@@ -1,5 +1,30 @@
-.testimonialSection {
-  text-align: center;
+.carouselViewport {
+  cursor: grab;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.carouselViewport:active {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 450ms ease;
+  will-change: transform;
+}
+
+.carouselSlide {
+  flex: 0 0 100%;
+  margin: 0 auto 2rem;
+  max-width: none;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.testimonialSection .carouselSlide {
+  max-width: none;
 }
 
 .testimonialSection blockquote {
@@ -11,11 +36,16 @@
   color: var(--foreground);
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   line-height: 1.2;
+  margin: 0 auto 2rem;
+  max-width: 42rem;
 }
 
 .testimonialSection cite {
   color: var(--muted);
+  display: block;
   font-style: normal;
+  margin: 0 auto;
+  max-width: 42rem;
 }
 
 .carouselControls {
