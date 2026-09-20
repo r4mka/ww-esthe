@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, type PointerEvent } from "react";
+import { useState } from "react";
+
+import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import styles from "./process-section.module.css";
 import { ProcessStep } from "./process-step";
@@ -9,7 +11,6 @@ import { steps } from "./steps";
 
 export function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const [swipeStartX, setSwipeStartX] = useState<number | null>(null);
 
   const moveToStep = (direction: "next" | "previous") => {
     setActiveStep((currentStep) => {
@@ -21,33 +22,11 @@ export function ProcessSection() {
     });
   };
 
-  const handlePointerCancel = () => {
-    setSwipeStartX(null);
-  };
-
-  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if (
-      event.isPrimary &&
-      !(event.target instanceof Element && event.target.closest("button, a"))
-    ) {
-      setSwipeStartX(event.clientX);
-      event.currentTarget.setPointerCapture(event.pointerId);
-    }
-  };
-
-  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
-    if (!event.isPrimary || swipeStartX === null) {
-      return;
-    }
-
-    const swipeDistance = event.clientX - swipeStartX;
-    setSwipeStartX(null);
-    event.currentTarget.releasePointerCapture(event.pointerId);
-
-    if (Math.abs(swipeDistance) >= 50) {
-      moveToStep(swipeDistance < 0 ? "next" : "previous");
-    }
-  };
+  const { onPointerDown, onPointerUp, onPointerCancel } = useSwipeGesture({
+    onSwipe: moveToStep,
+    capturePointer: true,
+    ignoreInteractiveElements: true,
+  });
 
   return (
     <section
@@ -65,9 +44,9 @@ export function ProcessSection() {
         <ProcessTrack activeStep={activeStep} onSelectStep={setActiveStep} />
         <div
           className={styles.carouselViewport}
-          onPointerCancel={handlePointerCancel}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
+          onPointerCancel={onPointerCancel}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
         >
           <div
             className={styles.carouselTrack}

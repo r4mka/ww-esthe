@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 
+import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
+
 import styles from "./gallery-grid.module.css";
 
 const galleryItems = [
@@ -124,8 +126,6 @@ export function GalleryGrid({ className, previewCount }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [previewStart, setPreviewStart] = useState(0);
-  const didSwipe = useRef(false);
-  const swipeStartX = useRef<number | null>(null);
   const viewerScrollRef = useRef<HTMLDivElement>(null);
 
   const movePreview = (direction: "next" | "previous") => {
@@ -152,39 +152,8 @@ export function GalleryGrid({ className, previewCount }: GalleryGridProps) {
     });
   };
 
-  const handlePreviewPointerDown = (
-    event: React.PointerEvent<HTMLDivElement>,
-  ) => {
-    if (previewCount !== undefined && event.isPrimary) {
-      didSwipe.current = false;
-      swipeStartX.current = event.clientX;
-    }
-  };
-
-  const handlePreviewPointerUp = (
-    event: React.PointerEvent<HTMLDivElement>,
-  ) => {
-    if (
-      previewCount === undefined ||
-      !event.isPrimary ||
-      swipeStartX.current === null
-    ) {
-      return;
-    }
-
-    const swipeDistance = event.clientX - swipeStartX.current;
-    swipeStartX.current = null;
-
-    if (Math.abs(swipeDistance) >= 50) {
-      didSwipe.current = true;
-      movePreview(swipeDistance < 0 ? "next" : "previous");
-    }
-  };
-
-  const handlePreviewPointerCancel = () => {
-    didSwipe.current = false;
-    swipeStartX.current = null;
-  };
+  const { didSwipe, onPointerDown, onPointerUp, onPointerCancel } =
+    useSwipeGesture({ onSwipe: movePreview });
 
   useEffect(() => {
     if (activeIndex === null) {
@@ -258,9 +227,9 @@ export function GalleryGrid({ className, previewCount }: GalleryGridProps) {
       ) : (
         <div
           className={`${styles.previewViewport} ${className ?? ""}`}
-          onPointerCancel={handlePreviewPointerCancel}
-          onPointerDown={handlePreviewPointerDown}
-          onPointerUp={handlePreviewPointerUp}
+          onPointerCancel={onPointerCancel}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
         >
           <div
             className={styles.previewTrack}

@@ -1,7 +1,9 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import styles from "./testimonials-section.module.css";
 
@@ -51,7 +53,6 @@ export function TestimonialsSection() {
 function TestimonialCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const swipeStartX = useRef<number | null>(null);
 
   useEffect(() => {
     if (isPaused) {
@@ -77,37 +78,12 @@ function TestimonialCarousel() {
     });
   };
 
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.isPrimary) {
-      swipeStartX.current = event.clientX;
-      event.currentTarget.setPointerCapture(event.pointerId);
-      setIsPaused(true);
-    }
-  };
-
-  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!event.isPrimary || swipeStartX.current === null) {
-      return;
-    }
-
-    const swipeDistance = event.clientX - swipeStartX.current;
-    swipeStartX.current = null;
-    event.currentTarget.releasePointerCapture(event.pointerId);
-
-    if (Math.abs(swipeDistance) >= 50) {
-      moveTo(swipeDistance < 0 ? "next" : "previous");
-    }
-
-    setIsPaused(false);
-  };
-
-  const handlePointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
-    swipeStartX.current = null;
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-    setIsPaused(false);
-  };
+  const { onPointerDown, onPointerUp, onPointerCancel } = useSwipeGesture({
+    onSwipe: moveTo,
+    capturePointer: true,
+    onSwipeStart: () => setIsPaused(true),
+    onSwipeEnd: () => setIsPaused(false),
+  });
 
   return (
     <div
@@ -122,9 +98,9 @@ function TestimonialCarousel() {
     >
       <div
         className={styles.carouselViewport}
-        onPointerCancel={handlePointerCancel}
-        onPointerDown={handlePointerDown}
-        onPointerUp={handlePointerUp}
+        onPointerCancel={onPointerCancel}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
       >
         <div
           className={styles.carouselTrack}
