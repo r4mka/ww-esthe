@@ -1,0 +1,191 @@
+.processIntro {
+  display: block;
+  margin-bottom: 3.25rem;
+}
+
+.processTimeline {
+  position: relative;
+}
+
+.progressTrack {
+  background: rgba(102, 84, 68, 0.28);
+  height: 2px;
+  margin: 0 0 2.5rem;
+  position: relative;
+}
+
+.progressFill {
+  background: #665444;
+  display: block;
+  height: 100%;
+  transition: width 350ms ease;
+}
+
+.progressSteps {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.progressPoint {
+  align-items: center;
+  background: var(--background);
+  border: 1px solid #665444;
+  border-radius: 50%;
+  color: #665444;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.68rem;
+  font-weight: 700;
+  height: 2.2rem;
+  justify-content: center;
+  padding: 0;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+  width: 2.2rem;
+}
+
+.progressPoint.completed {
+  background: #665444;
+  color: #fff;
+}
+
+.progressPoint[aria-current="step"] {
+  box-shadow: 0 0 0 4px rgba(102, 84, 68, 0.16);
+  transform: scale(1.08);
+}
+
+.progressPoint:focus-visible {
+  outline: 2px solid #665444;
+  outline-offset: 0.25rem;
+}
+
+.carouselViewport {
+  cursor: grab;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.carouselViewport:active {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 450ms ease;
+  will-change: transform;
+}
+
+.processSlide {
+  flex: 0 0 100%;
+  min-height: 12rem;
+  padding: 1.5rem 1.25rem 1.25rem;
+}
+
+.processSlideContent {
+  max-width: 36rem;
+}
+
+.stepIcon {
+  align-items: center;
+  background: rgba(102, 84, 68, 0.12);
+  border-radius: 50%;
+  color: #665444;
+  display: flex;
+  height: 2.8rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 2.8rem;
+}
+
+.stepSubtitle {
+  color: #665444;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.processSlide h3 {
+  margin-bottom: 0.6rem;
+}
+
+.processSlide p:last-child {
+  margin-bottom: 0;
+}
+
+.processSlideContent > p:last-child {
+  text-align: justify;
+}
+
+.processNavigation {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.nextStepButton {
+  align-items: center;
+  background: #665444;
+  border: 1px solid #665444;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.95rem;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.7rem 1.1rem;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    gap 180ms ease;
+}
+
+.nextStepButton:hover {
+  background: var(--beige);
+  border-color: var(--beige);
+}
+
+.nextStepButton:focus-visible {
+  outline: 2px solid #665444;
+  outline-offset: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .processSlide {
+    align-items: stretch;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.42fr);
+    min-height: 15rem;
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .processNavigation {
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressFill,
+  .progressPoint,
+  .carouselTrack {
+    transition: none;
+  }
+}

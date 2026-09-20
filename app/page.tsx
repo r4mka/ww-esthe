@@ -1,7 +1,7 @@
 import { FaqSection } from "@/components/sections/faq-section";
 import { GallerySection } from "@/components/sections/gallery-section";
 import { HeroSection } from "@/components/sections/hero-section";
-import { ProcessSection } from "@/components/sections/process-section";
+import { ProcessSection } from "@/components/sections/process-section/process-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { SiteFooter } from "@/components/site-footer";
