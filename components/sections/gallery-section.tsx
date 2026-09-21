@@ -1,4 +1,4 @@
-import { GalleryGrid } from "@/components/gallery-grid";
+import { GalleryGrid } from "@/components/gallery-grid/gallery-grid";
 import Link from "next/link";
 import styles from "./gallery-section.module.css";
 

@@ -1,4 +1,4 @@
-import { GalleryGrid } from "@/components/gallery-grid";
+import { GalleryGrid } from "@/components/gallery-grid/gallery-grid";
 import { PageIntro } from "@/components/page-intro";
 import { PageShell } from "@/components/page-shell";
 
