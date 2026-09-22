@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/site-config";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,8 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WW - ESTHE",
-  description: "Scaffold strony głównej WW - ESTHE",
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: siteConfig.businessName,
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.businessName,
+    description: siteConfig.description,
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.businessName,
+    locale: siteConfig.locale,
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

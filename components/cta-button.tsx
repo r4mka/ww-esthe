@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/site-config";
+
 interface CTAButtonProps {
   className?: string;
   children?: string;
@@ -9,7 +11,7 @@ export const CTAButton = (props: CTAButtonProps) => {
   return (
     <a
       className={`button ${className}`}
-      href="https://ig.me/m/wiktoria.warylak.esthe"
+      href={siteConfig.bookingUrl}
       target="_blank"
       rel="noopener noreferrer"
     >

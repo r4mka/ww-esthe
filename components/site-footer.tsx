@@ -1,3 +1,4 @@
+import { siteConfig } from "@/data/site-config";
 import Link from "next/link";
 import {
   AddressIcon,
@@ -15,27 +16,24 @@ export function SiteFooter() {
       <div className={styles.footerContent}>
         <div className={styles.footerGroup}>
           <h2 className={styles.footerHeading}>Kontakt</h2>
-          <a className={styles.footerItem} href="tel:+48780182458">
+          <a className={styles.footerItem} href={siteConfig.phone.href}>
             <PhoneIcon className={styles.footerIcon} />
-            <span>+48 780 182 458</span>
+            <span>{siteConfig.phone.display}</span>
           </a>
-          <a
-            className={styles.footerItem}
-            href="mailto:wiktoria.warylak@esthe.pl"
-          >
+          <a className={styles.footerItem} href={siteConfig.email.href}>
             <MailIcon className={styles.footerIcon} />
-            <span>wiktoria.warylak@esthe.pl</span>
+            <span>{siteConfig.email.display}</span>
           </a>
           <address className={`${styles.address} ${styles.footerItem}`}>
             <AddressIcon className={styles.footerIcon} />
             <a
-              href="https://maps.app.goo.gl/8EGQF2ho8o2eJ4Ji7"
+              href={siteConfig.address.mapsUrl}
               target="_blank"
               rel="noreferrer"
             >
-              ul. Racławicka 1/4
+              {siteConfig.address.lines[0]}
               <br />
-              70-811 Szczecin
+              {siteConfig.address.lines[1]}
             </a>
           </address>
         </div>
@@ -52,7 +50,7 @@ export function SiteFooter() {
           <h2 className={styles.footerHeading}>Media społecznościowe</h2>
           <a
             className={styles.footerItem}
-            href="https://instagram.com/wiktoria.warylak.esthe"
+            href={siteConfig.social.instagram}
             target="_blank"
             rel="noreferrer"
           >
@@ -61,7 +59,7 @@ export function SiteFooter() {
           </a>
           <a
             className={styles.footerItem}
-            href="https://www.facebook.com/p/Wiktoria-Warylak-PMU-61571133683099/"
+            href={siteConfig.social.facebook}
             target="_blank"
             rel="noreferrer"
           >
@@ -72,11 +70,14 @@ export function SiteFooter() {
 
         <nav className={styles.footerGroup} aria-label="Informacje prawne">
           <h2 className={styles.footerHeading}>Informacje prawne</h2>
-          <Link href="/regulamin">Regulamin</Link>
-          <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+          <Link href={siteConfig.legal.termsPath}>Regulamin</Link>
+          <Link href={siteConfig.legal.privacyPolicyPath}>
+            Polityka prywatności
+          </Link>
           <span className={styles.footerDivider} aria-hidden="true" />
           <p className={styles.copyright}>
-            © 2026 WW - ESTHE. Wszelkie prawa zastrzeżone.
+            © {siteConfig.legal.copyrightYear} {siteConfig.businessName}. Wszelkie
+            prawa zastrzeżone.
           </p>
         </nav>
       </div>
