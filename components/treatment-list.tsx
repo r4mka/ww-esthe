@@ -21,15 +21,21 @@ export function TreatmentList({ limit, compact = false }: TreatmentListProps) {
       {visibleTreatments.map((treatment, index) => (
         <article className={styles.item} key={treatment.slug}>
           <div className={styles.row}>
-            <div className={styles.imageWrap}>
-              <Image
-                className={styles.image}
-                src={getTreatmentImage(treatment.slug)}
-                alt={treatment.imageAlt}
-                width={720}
-                height={900}
-              />
-            </div>
+            <Link
+              className={styles.imageLink}
+              href={`/zabiegi/${treatment.slug}`}
+              aria-label={`Zobacz zabieg: ${treatment.title}`}
+            >
+              <div className={styles.imageWrap}>
+                <Image
+                  className={styles.image}
+                  src={getTreatmentImage(treatment.slug)}
+                  alt={treatment.imageAlt}
+                  width={720}
+                  height={900}
+                />
+              </div>
+            </Link>
             <div className={styles.copy}>
               <span className={styles.number}>
                 {String(index + 1).padStart(2, "0")}

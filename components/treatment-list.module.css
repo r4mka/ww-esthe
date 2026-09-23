@@ -26,6 +26,13 @@
   overflow: hidden;
 }
 
+.imageLink {
+  color: inherit;
+  display: block;
+  max-width: 30rem;
+  text-decoration: none;
+}
+
 .image {
   aspect-ratio: 4 / 5;
   display: block;
@@ -33,7 +40,13 @@
   height: auto;
   object-fit: cover;
   transform: scale(1.02);
+  transition: transform 250ms ease;
   width: 100%;
+}
+
+.imageLink:hover .image,
+.imageLink:focus-visible .image {
+  transform: scale(var(--image-hover-scale));
 }
 
 .copy {
@@ -109,6 +122,10 @@
 
 .compact .imageWrap {
   margin-bottom: 0.5rem;
+  max-width: none;
+}
+
+.compact .imageLink {
   max-width: none;
 }
 
@@ -188,5 +205,11 @@
 
   .compact .meta {
     margin-top: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
   }
 }

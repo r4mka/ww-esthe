@@ -33,6 +33,7 @@
   --header-height: 80px;
   --foter-heading: #fffdf9;
   --text: #f7f4ef;
+  --image-hover-scale: 1.04;
 }
 
 @theme inline {
