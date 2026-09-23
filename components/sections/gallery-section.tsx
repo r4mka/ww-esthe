@@ -1,4 +1,4 @@
-import { GalleryGrid } from "@/components/gallery-grid/gallery-grid";
+import { GalleryPreview } from "@/components/gallery-grid/gallery-preview";
 import Link from "next/link";
 import styles from "./gallery-section.module.css";
 
@@ -16,7 +16,7 @@ export function GallerySection() {
         </div>
         <p>Zobacz efekty zabiegów i poznaj estetykę WW-Esthe.</p>
       </div>
-      <GalleryGrid className={styles.fullWidthGallery} previewCount={3} />
+      <GalleryPreview className={styles.fullWidthGallery} previewCount={3} />
       <Link className="button button-secondary" href="/galeria">
         Zobacz całą galerię
       </Link>

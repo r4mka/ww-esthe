@@ -1,30 +1,53 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { useState } from "react";
 
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import styles from "./gallery-grid.module.css";
 import { galleryItems } from "./gallery-items";
 import { GalleryThumbnail } from "./gallery-thumbnail";
+import { GalleryViewer } from "./gallery-viewer";
 
 type GalleryPreviewProps = {
   className?: string;
-  previewStart: number;
-  onMove: (direction: "next" | "previous") => void;
-  onOpenItem: (index: number) => void;
+  previewCount: number;
 };
 
 export function GalleryPreview({
   className,
-  previewStart,
-  onMove,
-  onOpenItem,
+  previewCount,
 }: GalleryPreviewProps) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [previewStart, setPreviewStart] = useState(0);
+
+  const movePreview = (direction: "next" | "previous") => {
+    setPreviewStart((currentStart) => {
+      const lastStart = Math.max(galleryItems.length - previewCount, 0);
+      const nextStart =
+        direction === "next"
+          ? currentStart + previewCount
+          : currentStart - previewCount;
+
+      if (nextStart > lastStart) {
+        return 0;
+      }
+
+      if (nextStart < 0) {
+        return lastStart;
+      }
+
+      return nextStart;
+    });
+  };
+
   const {
     didSwipe: didSwipeRef,
     onPointerDown,
     onPointerUp,
     onPointerCancel,
-  } = useSwipeGesture({ onSwipe: onMove });
+  } = useSwipeGesture({ onSwipe: movePreview });
 
   const handleOpen = (index: number) => {
     if (didSwipeRef.current) {
@@ -32,33 +55,41 @@ export function GalleryPreview({
       return;
     }
 
-    onOpenItem(index);
+    setActiveIndex(index);
   };
 
   return (
-    <div
-      className={`${styles.previewViewport} ${className ?? ""}`}
-      onPointerCancel={onPointerCancel}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-    >
+    <>
       <div
-        className={styles.previewTrack}
-        style={
-          {
-            "--preview-item-count": galleryItems.length,
-            transform: `translateX(-${(previewStart / galleryItems.length) * 100}%)`,
-          } as CSSProperties
-        }
+        className={`${styles.previewViewport} ${className ?? ""}`}
+        onPointerCancel={onPointerCancel}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
       >
-        {galleryItems.map((item, index) => (
-          <GalleryThumbnail
-            item={item}
-            key={item.src}
-            onOpen={() => handleOpen(index)}
-          />
-        ))}
+        <div
+          className={styles.previewTrack}
+          style={
+            {
+              "--preview-item-count": galleryItems.length,
+              transform: `translateX(-${(previewStart / galleryItems.length) * 100}%)`,
+            } as CSSProperties
+          }
+        >
+          {galleryItems.map((item, index) => (
+            <GalleryThumbnail
+              item={item}
+              key={item.src}
+              onOpen={() => handleOpen(index)}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+      {activeIndex !== null && (
+        <GalleryViewer
+          activeIndex={activeIndex}
+          onClose={() => setActiveIndex(null)}
+        />
+      )}
+    </>
   );
 }
