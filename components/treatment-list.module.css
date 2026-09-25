@@ -5,9 +5,7 @@
 }
 
 .item {
-  background: color-mix(in srgb, var(--surface) 45%, var(--background));
-  border-bottom: 1px solid var(--line);
-  padding: 1rem 1rem 1.5rem;
+  padding: 0;
 }
 
 .row {
@@ -16,9 +14,6 @@
 }
 
 .imageWrap {
-  background: var(--background);
-  border: 1px solid var(--line);
-  box-shadow: none;
   max-width: 30rem;
   overflow: hidden;
 }
@@ -109,7 +104,13 @@
 }
 
 .compact .item {
-  padding-bottom: 1.25rem;
+  padding-bottom: 0;
+}
+
+.compact .item:nth-child(2) {
+  background: #eee9e1;
+  margin-inline: -1.25rem;
+  padding: 1rem 1.25rem;
 }
 
 .compact .row {
@@ -155,15 +156,7 @@
   }
 
   .item {
-    background: transparent;
-    padding: 0 0 4rem;
-  }
-
-  .imageWrap {
-    background: transparent;
-    border: 0;
-    border-radius: 0 0 4rem 0;
-    box-shadow: none;
+    padding-bottom: 4rem;
   }
 
   .image {
@@ -210,9 +203,14 @@
   }
 
   .compact .item {
-    border-bottom: 0;
     display: flex;
     padding-bottom: 0;
+  }
+
+  .compact .item:nth-child(2) {
+    background: transparent;
+    margin-inline: 0;
+    padding: 0;
   }
 
   .compact .imageWrap {
