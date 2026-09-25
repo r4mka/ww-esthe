@@ -1,57 +1,55 @@
 .faqList {
-  border-top: 1px solid var(--line);
-}
+  details {
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 1.15rem 0;
+  }
 
-.faqList details {
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
-  padding: 1.15rem 0;
-}
+  summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    list-style-position: outside;
+    padding-right: 0.5rem;
+  }
 
-.faqList summary {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  font-size: 1.05rem;
-  font-weight: 500;
-  list-style-position: outside;
-  padding-right: 0.5rem;
-}
+  summary::-webkit-details-marker {
+    display: none;
+  }
 
-.faqList summary::-webkit-details-marker {
-  display: none;
-}
+  summary::after {
+    content: "▾";
+    color: var(--muted);
+    display: inline-block;
+    font-size: 1.15rem;
+    line-height: 1;
+    transition:
+      transform 340ms ease,
+      color 180ms ease;
+  }
 
-.faqList summary::after {
-  content: "▾";
-  color: var(--muted);
-  display: inline-block;
-  font-size: 1.15rem;
-  line-height: 1;
-  transition:
-    transform 340ms ease,
-    color 180ms ease;
-}
+  details[open] summary::after {
+    color: var(--foreground);
+    transform: rotate(180deg);
+  }
 
-.faqList details[open] summary::after {
-  color: var(--foreground);
-  transform: rotate(180deg);
-}
+  details p {
+    margin: 1rem 0 0 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 380ms ease,
+      opacity 340ms ease,
+      margin-top 340ms ease;
+  }
 
-.faqList details p {
-  margin: 1rem 0 0 1rem;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition:
-    max-height 380ms ease,
-    opacity 340ms ease,
-    margin-top 340ms ease;
-}
-
-.faqList details[open] p {
-  max-height: 12rem;
-  opacity: 1;
+  details[open] p {
+    max-height: 12rem;
+    opacity: 1;
+  }
 }

@@ -1,28 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  /* --foreground: #25221e;
-  --muted: #716b62;
-
-  --background: #f7f4ef;
-  --surface: #fffdf9;
-  --line: #d8d0c5;
-  --accent: #b36a4c; */
-
-  /* --background: #f4f0e9;
-  --surface: #fcfaf6;
-  --foreground: #302923;
-  --muted: #81766c;
-  --line: #d8cec2;
-  --accent: #9a6f62; */
-
-  /* --background: #ebe4da;
-  --surface: #faf7f1;
-  --foreground: #29221e;
-  --muted: #786b61;
-  --line: #cfc1b2;
-  --accent: #8e6257; */
-
   --background: #f3f3f1;
   --surface: #ffffff;
   --foreground: #202020;
@@ -76,7 +54,13 @@ a {
 .section-shell {
   margin: 0 auto;
   max-width: 1180px;
-  padding: 3.75rem 1.25rem;
+  padding: 2.5rem 1.25rem;
+
+  & > .button {
+    display: block;
+    width: fit-content;
+    margin-top: 2.5rem;
+  }
 }
 
 .section-tinted {
@@ -170,7 +154,7 @@ p {
   }
 
   .section-shell {
-    padding: 5.75rem 2rem;
+    padding: 2.5rem 2rem;
   }
 
   .section-tinted {
