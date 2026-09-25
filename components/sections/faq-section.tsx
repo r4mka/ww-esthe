@@ -1,10 +1,19 @@
-const questions = [
-  "Jak przygotować się do wizyty?",
-  "Ile trwa konsultacja?",
-  "Jak wybrać właściwy zabieg?",
-];
+import { FaqItem } from "@/components/faq-item";
 
-import styles from "./faq-section.module.css";
+const homeFaqs = [
+  {
+    question: "Jak przygotować się do wizyty?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+  {
+    question: "Ile trwa konsultacja?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+  {
+    question: "Jak wybrać właściwy zabieg?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+];
 
 export function FaqSection() {
   return (
@@ -16,14 +25,9 @@ export function FaqSection() {
         <p className="eyebrow">Informacje</p>
         <h2 id="faq-title">Wszystko o co chciałabyś zapytać</h2>
       </div>
-      <div className={styles.faqList}>
-        {questions.map((question) => (
-          <details key={question}>
-            <summary>{question}</summary>
-            <p>
-              Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.
-            </p>
-          </details>
+      <div>
+        {homeFaqs.map((faq) => (
+          <FaqItem key={faq.question} {...faq} />
         ))}
       </div>
     </section>

@@ -1,0 +1,53 @@
+.item {
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 1.15rem 0;
+}
+
+.item summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.05rem;
+  font-weight: 500;
+  gap: 0.75rem;
+  justify-content: space-between;
+  list-style-position: outside;
+  padding-right: 0.5rem;
+}
+
+.item summary::-webkit-details-marker {
+  display: none;
+}
+
+.item summary::after {
+  color: var(--muted);
+  content: "▾";
+  display: inline-block;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition:
+    transform 340ms ease,
+    color 180ms ease;
+}
+
+.item[open] summary::after {
+  color: var(--foreground);
+  transform: rotate(180deg);
+}
+
+.answer {
+  margin: 1rem 0 0 1rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 380ms ease,
+    opacity 340ms ease,
+    margin-top 340ms ease;
+}
+
+.item[open] .answer {
+  max-height: 12rem;
+  opacity: 1;
+}
