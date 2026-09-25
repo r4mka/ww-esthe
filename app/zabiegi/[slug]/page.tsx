@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { PageIntro } from "@/components/page-intro";
+import { CTAButton } from "@/components/cta-button";
+import { FaqItem } from "@/components/faq-item";
 import { PageShell } from "@/components/page-shell";
-import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
+import { getTreatment, treatments } from "@/data/treatments";
 import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
@@ -40,68 +40,93 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
   return (
     <PageShell>
       <article>
-        <section className="section-shell">
-          <PageIntro
-            eyebrow="Zabieg"
-            title={treatment.title}
-            description={treatment.shortDescription}
-          />
-          <div className={styles.heroImage}>
-            <Image
-              className={styles.heroImageFile}
-              src={getTreatmentImage(treatment.slug)}
-              alt={treatment.imageAlt}
-              width={1200}
-              height={900}
-              priority
-            />
-          </div>
-        </section>
-
         <section
-          className="section-shell section-tinted"
-          aria-label="Najważniejsze informacje"
+          id="wprowadzenie"
+          className={`${styles.hero} ${styles.anchorSection} section-shell`}
         >
-          <dl className={styles.facts}>
-            <div>
-              <dt>Czas trwania</dt>
-              <dd>{treatment.duration}</dd>
-            </div>
+          <div className={styles.heroCopy}>
+            <h1 className={styles.heroTitle}>{treatment.title}</h1>
+            <h2 className={styles.heroSubtitle}>Dla kogo jest ten zabieg?</h2>
+            {treatment.forWho.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <CTAButton />
+          </div>
+          <dl
+            id="informacje"
+            className={`${styles.heroFacts} ${styles.anchorSection}`}
+            aria-label="Podstawowe informacje o zabiegu"
+          >
             <div>
               <dt>Cena</dt>
               <dd>{treatment.price}</dd>
             </div>
+            <div>
+              <dt>Czas trwania</dt>
+              <dd>{treatment.duration}</dd>
+            </div>
           </dl>
         </section>
 
-        <section className={`${styles.content} section-shell`}>
-          <div>
-            <h2>Dla kogo jest zabieg?</h2>
-            <p>{treatment.forWho}</p>
+        <section
+          id="opis-zabiegu"
+          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell`}
+        >
+          <h2>Na czym polega zabieg?</h2>
+          <div className={styles.copyColumn}>
+            {treatment.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
-          <div>
-            <h2>Na czym polega zabieg?</h2>
-            <p>{treatment.description}</p>
-          </div>
+        </section>
+
+        <section
+          id="przygotowanie-do-zabiegu"
+          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell section-tinted`}
+        >
           <div>
             <h2>Przygotowanie do zabiegu</h2>
-            <ul>
+            <ol className={`${styles.list} ${styles.orderedList}`}>
               {treatment.preparation.map((item) => (
                 <li key={item}>{item}</li>
               ))}
-            </ul>
+            </ol>
           </div>
+        </section>
+
+        <section
+          id="przeciwwskazania"
+          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
+        >
           <div>
             <h2>Przeciwwskazania</h2>
-            <ul>
+            <ul className={`${styles.list} ${styles.unorderedList}`}>
               {treatment.contraindications.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
+        </section>
+
+        <section
+          id="reakcje-pozabiegowe"
+          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell section-tinted`}
+        >
+          <h2>Możliwe reakcje pozabiegowe</h2>
+          <div className={styles.copyColumn}>
+            {treatment.possibleReactions.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="zalecenia-pozabiegowe"
+          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
+        >
           <div>
-            <h2>Zalecenia po zabiegu</h2>
-            <ul>
+            <h2>Zalecenia pozabiegowe</h2>
+            <ul className={`${styles.list} ${styles.unorderedList}`}>
               {treatment.aftercare.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -110,19 +135,16 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
         </section>
 
         <section
-          className="section-shell section-tinted"
+          id="faq"
+          className={`${styles.content} ${styles.anchorSection} section-shell section-tinted`}
           aria-labelledby="faq-title"
         >
-          <div className="section-heading">
-            <p className="eyebrow">Pytania</p>
+          <div>
             <h2 id="faq-title">Najczęściej zadawane pytania</h2>
           </div>
-          <div className={styles.faqList}>
+          <div>
             {treatment.faqs.map((faq) => (
-              <details key={faq.question}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
+              <FaqItem key={faq.question} {...faq} />
             ))}
           </div>
         </section>
