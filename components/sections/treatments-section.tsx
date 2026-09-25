@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { TreatmentList } from "@/components/treatment-list";
 
-export function ServicesSection() {
+export function TreatmentsSection() {
   return (
     <section
       className="section-shell"
