@@ -147,11 +147,7 @@
 
 @media (min-width: 640px) {
   .list {
-    gap: 4rem;
-  }
-
-  .item {
-    padding-bottom: 4rem;
+    gap: 2.5rem;
   }
 
   .image {
@@ -183,10 +179,6 @@
     grid-row: 1;
   }
 
-  .item:nth-child(even) .imageWrap {
-    border-radius: 0 0 0 4rem;
-  }
-
   .item:nth-child(even) .copy {
     grid-column: 1;
     grid-row: 1;
@@ -206,6 +198,23 @@
     background: transparent;
     margin-inline: 0;
     padding: 0;
+  }
+
+  .list:not(.compact) > .item:nth-child(odd) {
+    isolation: isolate;
+    padding-block: 2.5rem;
+    position: relative;
+  }
+
+  .list:not(.compact) > .item:nth-child(odd)::before {
+    background: #eee9e1;
+    content: "";
+    inset-block: 0;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: -1;
   }
 
   .compact .imageWrap {
