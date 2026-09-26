@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { CTAButton } from "@/components/cta-button";
 import { FaqItem } from "@/components/faq-item";
 import { PageShell } from "@/components/page-shell";
-import { getTreatment, treatments } from "@/data/treatments";
+import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
 import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
@@ -52,6 +53,27 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
             ))}
             <CTAButton />
           </div>
+          <div className={styles.heroImage}>
+            <Image
+              className={styles.heroImageFile}
+              src={getTreatmentImage(treatment.slug)}
+              alt={treatment.imageAlt}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </div>
+        </section>
+
+        <section
+          id="opis-zabiegu"
+          className={`${styles.content} ${styles.copyContent} ${styles.copyContentNoDivider} ${styles.anchorSection} section-shell`}
+        >
+          <h2>Na czym polega zabieg?</h2>
+          <div className={styles.copyColumn}>
+            {treatment.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <dl
             id="informacje"
             className={`${styles.heroFacts} ${styles.anchorSection}`}
@@ -65,19 +87,15 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
               <dt>Czas trwania</dt>
               <dd>{treatment.duration}</dd>
             </div>
+            <div>
+              <dt>Rekonwalescencja</dt>
+              <dd>{treatment.recoveryTime}</dd>
+            </div>
+            <div>
+              <dt>Liczba zabiegów</dt>
+              <dd>{treatment.sessionCount}</dd>
+            </div>
           </dl>
-        </section>
-
-        <section
-          id="opis-zabiegu"
-          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell`}
-        >
-          <h2>Na czym polega zabieg?</h2>
-          <div className={styles.copyColumn}>
-            {treatment.description.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
         </section>
 
         <section

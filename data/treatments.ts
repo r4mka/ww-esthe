@@ -6,6 +6,9 @@ export type Treatment = {
   imageAlt: string;
   secondaryImage: { src: string; alt: string };
   duration: string;
+  effectDuration: string;
+  recoveryTime: string;
+  sessionCount: string;
   price: string;
   description: string[];
   possibleReactions: string[];
@@ -42,6 +45,9 @@ export const treatments: Treatment[] = [
       alt: "Naturalny efekt ust.",
     },
     duration: "około 30 minut",
+    effectDuration: "zależna od preparatu i indywidualnych cech",
+    recoveryTime: "kilka dni",
+    sessionCount: "1 + ewentualna korekta",
     price: "800–1000 zł",
     description: [
       "Podczas konsultacji omawiamy oczekiwania, proporcje twarzy i możliwy efekt. Dobór preparatu oraz plan podania uwzględniają anatomię ust.",
@@ -107,6 +113,9 @@ export const treatments: Treatment[] = [
       alt: "Efekt pielęgnacji skóry.",
     },
     duration: "około 30 minut",
+    effectDuration: "zależna od preparatu i indywidualnych cech",
+    recoveryTime: "kilka dni",
+    sessionCount: "ustalana indywidualnie",
     price: "od 900 zł",
     description: [
       "Podczas konsultacji oceniamy potrzeby skóry i dobieramy preparat do obszaru zabiegowego oraz oczekiwanego efektu.",
@@ -167,6 +176,9 @@ export const treatments: Treatment[] = [
       alt: "Stylizacja brwi.",
     },
     duration: "około 2–3 godzin",
+    effectDuration: "indywidualna",
+    recoveryTime: "do wygojenia skóry",
+    sessionCount: "1 + ewentualna dopigmentacja",
     price: "800 zł",
     description: [
       "Przed pigmentacją ustalamy kształt, kolor i technikę, dopasowując je do urody oraz oczekiwań. Projekt brwi omawiamy przed rozpoczęciem zabiegu.",
@@ -227,6 +239,9 @@ export const treatments: Treatment[] = [
       alt: "Pigmentacja ust.",
     },
     duration: "około 2–3 godzin",
+    effectDuration: "indywidualna",
+    recoveryTime: "do wygojenia skóry",
+    sessionCount: "1 + ewentualna dopigmentacja",
     price: "800 zł",
     description: [
       "Podczas konsultacji dobieramy kolor i kształt, uwzględniając naturalny odcień ust oraz oczekiwany efekt.",
@@ -287,6 +302,9 @@ export const treatments: Treatment[] = [
       alt: "Zabieg pielęgnacyjny skóry.",
     },
     duration: "około 60 minut",
+    effectDuration: "indywidualna",
+    recoveryTime: "kilka dni",
+    sessionCount: "ustalana indywidualnie",
     price: "350–500 zł",
     description: [
       "Po ocenie skóry dobieramy obszar zabiegowy i pielęgnację do jej potrzeb oraz oczekiwanego efektu.",
@@ -341,6 +359,9 @@ export const treatments: Treatment[] = [
       alt: "Praca z zakresu kosmetologii.",
     },
     duration: "około 45–60 minut",
+    effectDuration: "indywidualna",
+    recoveryTime: "do ustąpienia zaczerwienienia",
+    sessionCount: "ustalana indywidualnie",
     price: "450–600 zł",
     description: [
       "Przed zabiegiem dobieramy jego parametry i obszar pracy do potrzeb skóry oraz wskazań. Omawiamy również stan zdrowia i ewentualne przeciwwskazania.",
@@ -394,6 +415,9 @@ export const treatments: Treatment[] = [
       alt: "Detal stylizacji brwi.",
     },
     duration: "około 30 minut",
+    effectDuration: "zależna od pigmentu i skóry",
+    recoveryTime: "do ustąpienia zaczerwienienia",
+    sessionCount: "seria ustalana indywidualnie",
     price: "200 zł za sesję",
     description: [
       "Podczas konsultacji oceniamy rodzaj i głębokość pigmentu oraz kondycję skóry. Na tej podstawie omawiamy możliwe efekty i orientacyjną liczbę sesji.",
@@ -447,6 +471,9 @@ export const treatments: Treatment[] = [
       alt: "Efekt pielęgnacji skóry.",
     },
     duration: "około 45 minut",
+    effectDuration: "indywidualna",
+    recoveryTime: "do wyciszenia skóry",
+    sessionCount: "ustalana indywidualnie",
     price: "300–350 zł",
     description: [
       "Rodzaj peelingu dobieramy po ocenie skóry i rozmowie o oczekiwanym efekcie. Uwzględniamy jej aktualną kondycję oraz stosowaną pielęgnację.",
