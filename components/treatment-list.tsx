@@ -18,7 +18,7 @@ export function TreatmentList({ limit, compact = false }: TreatmentListProps) {
 
   return (
     <div className={listClassName}>
-      {visibleTreatments.map((treatment, index) => (
+      {visibleTreatments.map((treatment) => (
         <article className={styles.item} key={treatment.slug}>
           <div className={styles.row}>
             <Link
@@ -37,9 +37,9 @@ export function TreatmentList({ limit, compact = false }: TreatmentListProps) {
               </div>
             </Link>
             <div className={styles.copy}>
-              <span className={styles.number}>
+              {/* <span className={styles.number}>
                 {String(index + 1).padStart(2, "0")}
-              </span>
+              </span> */}
               <h2>{treatment.title}</h2>
               <p>{treatment.shortDescription}</p>
               <div className={styles.meta}>

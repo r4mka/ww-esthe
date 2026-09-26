@@ -18,7 +18,7 @@ const homeFaqs = [
 export function FaqSection() {
   return (
     <section
-      className="section-shell section-tinted"
+      className="section-shell section-tinted faq-section"
       aria-labelledby="faq-title"
     >
       <div className="section-heading">

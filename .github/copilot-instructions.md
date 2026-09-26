@@ -6,12 +6,12 @@ WW-ESTHE is a Polish beauty and aesthetic services website.
 
 The project is a modern, visual landing page focused on:
 
-* beauty and aesthetic services
-* professional presentation
-* strong visual hierarchy
-* responsive design
-* clear calls to action
-* mobile-first usability
+- beauty and aesthetic services
+- professional presentation
+- strong visual hierarchy
+- responsive design
+- clear calls to action
+- mobile-first usability
 
 Keep the implementation simple, maintainable, and consistent with the existing design.
 
@@ -19,12 +19,12 @@ Keep the implementation simple, maintainable, and consistent with the existing d
 
 Tech Stack
 
-* Next.js 16
-* App Router
-* React 19
-* TypeScript
-* Tailwind CSS 4
-* Lucide React
+- Next.js 16
+- App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Lucide React
 
 Do not introduce additional libraries unless there is a clear reason and the existing stack cannot reasonably solve the problem.
 
@@ -38,10 +38,10 @@ Project Structure
 
 Use the existing structure:
 
-* app/ — Next.js routes, layouts and global styles
-* components/ — reusable React components and page sections
-* data/ — static website content and structured data
-* public/ — static images and other public assets
+- app/ — Next.js routes, layouts and global styles
+- components/ — reusable React components and page sections
+- data/ — static website content and structured data
+- public/ — static images and other public assets
 
 Do not introduce a new top-level directory for functionality that already has an appropriate location.
 
@@ -57,11 +57,11 @@ Prefer Server Components by default.
 
 Do not add "use client" unless the component actually requires client-side functionality, such as:
 
-* React state
-* event handlers
-* browser APIs
-* effects
-* client-only third-party libraries
+- React state
+- event handlers
+- browser APIs
+- effects
+- client-only third-party libraries
 
 Avoid turning an entire page or large component tree into a Client Component just because one small interaction needs client-side behavior.
 
@@ -91,12 +91,12 @@ Keep static website content separate from presentation whenever practical.
 
 Content such as:
 
-* services
-* FAQs
-* testimonials
-* process steps
-* navigation items
-* gallery items
+- services
+- FAQs
+- testimonials
+- process steps
+- navigation items
+- gallery items
 
 should preferably live in data/ rather than being duplicated across components.
 
@@ -118,9 +118,9 @@ Do not use any unless there is a strong technical reason.
 
 Prefer:
 
-* inferred types where inference is clear
-* union types for finite variants
-* interfaces or type aliases consistent with the surrounding code
+- inferred types where inference is clear
+- union types for finite variants
+- interfaces or type aliases consistent with the surrounding code
 
 Do not add unnecessary type complexity.
 
@@ -136,16 +136,18 @@ Prefer Tailwind utilities and the existing styling system.
 
 Do not introduce:
 
-* CSS-in-JS
-* styled-components
-* another utility CSS framework
-* a second design system
+- CSS-in-JS
+- styled-components
+- another utility CSS framework
+- a second design system
 
 unless there is a specific technical requirement.
 
 Before introducing a new color, spacing value, font size, border radius, shadow, or similar design value, check whether an existing value or CSS variable can be reused.
 
 Maintain visual consistency with the existing website.
+
+Prefer native CSS nesting in stylesheets and CSS Modules: nest descendant, pseudo-element, state, and breakpoint-specific rules under their owning selector instead of repeating parent selectors.
 
 Do not casually redesign existing sections while implementing an unrelated feature.
 
@@ -155,22 +157,24 @@ Responsive Design
 
 Every UI change must work on:
 
-* mobile
-* tablet
-* desktop
-* large desktop screens
+- mobile
+- tablet
+- desktop
+- large desktop screens
+
+Use a mobile-first CSS approach: define the base styles for mobile, then add `min-width` media queries for larger viewports. Avoid `max-width` media queries.
 
 Do not design desktop-first and “fix mobile later”.
 
 When changing layout, consider:
 
-* narrow mobile widths
-* long text
-* image aspect ratios
-* button wrapping
-* navigation behaviour
-* section spacing
-* touch targets
+- narrow mobile widths
+- long text
+- image aspect ratios
+- button wrapping
+- navigation behaviour
+- section spacing
+- touch targets
 
 Avoid hard-coded dimensions that can cause horizontal scrolling or content clipping.
 
@@ -184,11 +188,11 @@ Prefer Next.js image handling for website images where appropriate.
 
 When working with images:
 
-* preserve the intended aspect ratio
-* avoid unnecessary image distortion
-* use appropriate object-fit / object-position
-* provide meaningful alt text for informative images
-* use empty alt text for purely decorative images
+- preserve the intended aspect ratio
+- avoid unnecessary image distortion
+- use appropriate object-fit / object-position
+- provide meaningful alt text for informative images
+- use empty alt text for purely decorative images
 
 Do not replace existing image assets with placeholders unless explicitly requested.
 
@@ -214,11 +218,11 @@ Use semantic HTML whenever possible.
 
 Prefer:
 
-* button for actions
-* a / Next.js Link for navigation
-* proper heading hierarchy
-* semantic sections
-* accessible form controls
+- button for actions
+- a / Next.js Link for navigation
+- proper heading hierarchy
+- semantic sections
+- accessible form controls
 
 Interactive elements must be keyboard accessible.
 
@@ -262,11 +266,11 @@ The website is primarily a marketing/landing page, so visual quality and perform
 
 Prefer:
 
-* Server Components
-* optimized images
-* minimal client-side JavaScript
-* CSS animations over JavaScript animations when appropriate
-* existing Next.js optimizations
+- Server Components
+- optimized images
+- minimal client-side JavaScript
+- CSS animations over JavaScript animations when appropriate
+- existing Next.js optimizations
 
 Do not add client-side state or effects unless they are actually needed.
 
@@ -280,12 +284,12 @@ SEO
 
 When adding or changing pages, preserve proper:
 
-* page titles
-* metadata
-* heading hierarchy
-* semantic HTML
-* image alt text
-* canonical/internal linking where appropriate
+- page titles
+- metadata
+- heading hierarchy
+- semantic HTML
+- image alt text
+- canonical/internal linking where appropriate
 
 Do not add SEO text that makes the page feel unnatural or harms the existing design.
 
@@ -301,13 +305,13 @@ Prefer readable code over clever code.
 
 Avoid:
 
-* unnecessarily nested JSX
-* huge components
-* duplicated markup
-* premature abstractions
-* magic numbers without context
-* unnecessary comments
-* unnecessary helper functions
+- unnecessarily nested JSX
+- huge components
+- duplicated markup
+- premature abstractions
+- magic numbers without context
+- unnecessary comments
+- unnecessary helper functions
 
 Comments should explain why something is done when the reason is not obvious from the code.
 
@@ -341,11 +345,11 @@ Do not install a new dependency for functionality that can reasonably be impleme
 
 Before adding a dependency, consider whether:
 
-* Next.js already provides the functionality
-* React already provides the functionality
-* Tailwind already provides the styling
-* lucide-react already provides the required icon
-* a small local utility would be sufficient
+- Next.js already provides the functionality
+- React already provides the functionality
+- Tailwind already provides the styling
+- lucide-react already provides the required icon
+- a small local utility would be sufficient
 
 Keep the dependency footprint small.
 

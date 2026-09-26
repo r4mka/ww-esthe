@@ -2,6 +2,7 @@
 
 :root {
   --background: #f3f3f1;
+  --section-tint: #eee9e1;
   --surface: #ffffff;
   --foreground: #202020;
   --muted: #777777;
@@ -67,7 +68,11 @@ a {
   max-width: none;
   padding-left: max(1.25rem, calc((100% - 1180px) / 2 + 1.25rem));
   padding-right: max(1.25rem, calc((100% - 1180px) / 2 + 1.25rem));
-  background: #eee9e1;
+  background: transparent;
+}
+
+.faq-section {
+  background: var(--section-tint);
 }
 
 .eyebrow {

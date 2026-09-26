@@ -136,7 +136,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
 
         <section
           id="faq"
-          className={`${styles.content} ${styles.anchorSection} section-shell section-tinted`}
+          className={`${styles.content} ${styles.faqSection} ${styles.anchorSection} section-shell section-tinted`}
           aria-labelledby="faq-title"
         >
           <div>
