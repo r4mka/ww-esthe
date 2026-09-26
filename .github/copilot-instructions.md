@@ -77,6 +77,10 @@ Components
 
 Prefer small, focused components.
 
+Prefer named arrow functions for React components.
+
+Prefer implicit returns for arrow components when the JSX can be returned directly.
+
 If a component becomes difficult to understand because it contains several independent responsibilities, split it into smaller components.
 
 Do not create abstractions purely for the sake of abstraction. Follow the existing level of componentization.
