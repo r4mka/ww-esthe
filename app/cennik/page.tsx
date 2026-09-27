@@ -1,4 +1,4 @@
-import { PageIntro } from "@/components/page-intro";
+import { PageHero } from "@/components/page-hero";
 import { PageShell } from "@/components/page-shell";
 import styles from "./pricing.module.css";
 
@@ -61,11 +61,15 @@ const priceCategories = [
 export default function PricingPage() {
   return (
     <PageShell>
+      <PageHero
+        title="Cennik"
+        description="Przejrzyste informacje o cenach. Ostateczna wycena zależy od indywidualnych potrzeb."
+        image="/images/hero-about.jpg"
+        imageAlt="Kobieta w eleganckiej stylizacji"
+        mobilePosition="50% center"
+        desktopPosition="48% center"
+      />
       <section className="section-shell">
-        <PageIntro
-          title="Cennik"
-          description="Przejrzyste informacje o cenach. Ostateczna wycena zależy od indywidualnych potrzeb."
-        />
         <div className={styles.priceList} aria-label="Cennik zabiegów">
           {priceCategories.map((category) => (
             <section className={styles.priceCategory} key={category.name}>
