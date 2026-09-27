@@ -11,7 +11,9 @@ export default function ContactPage() {
         title="Porozmawiajmy o Twoich potrzebach."
         description="Napisz lub zadzwoń, aby umówić konsultację i dowiedzieć się więcej."
         image="/images/heros/hero-5.JPG"
+  desktopImage="/images/hero-contact.jpg"
         imageAlt="Portret klientki WW-Esthe"
+        desktopPosition="58% center"
       />
       <section className="section-shell">
         <address className={styles.contactDetails}>

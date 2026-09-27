@@ -34,12 +34,13 @@ export default function AboutPage() {
   return (
     <PageShell>
       <HeroPage
-        backgroundTone="taupe"
         eyebrow="O mnie"
         title="Poznajmy się bliżej."
         description="Wierzę, że najlepsze efekty zaczynają się od uważnej rozmowy, zaufania i dobrze dobranego planu."
         image="/images/heros/hero-5.JPG"
+        desktopImage="/images/hero-about.jpg"
         imageAlt="Portret kobiety w naturalnym świetle"
+        desktopPosition="42% center"
       />
 
       <section className={`${styles.aboutSection} section-shell`}>

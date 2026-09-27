@@ -16,9 +16,11 @@ interface HeroPageProps {
   title: string;
   description?: string;
   image: string;
+  desktopImage?: string;
   imageAlt: string;
   cta?: HeroLink;
   secondaryCta?: HeroLink;
+  desktopPosition?: string;
 }
 
 export const HeroPage = ({
@@ -27,14 +29,27 @@ export const HeroPage = ({
   title,
   description,
   image,
+  desktopImage,
   imageAlt,
   cta,
   secondaryCta,
+  desktopPosition = "center center",
 }: HeroPageProps) => {
   const titleId = `${id}-title`;
+  const desktopHeroImage = desktopImage ?? image;
 
   return (
-    <section id={id} className={styles.heroSection} aria-labelledby={titleId}>
+    <section
+      id={id}
+      className={styles.heroSection}
+      aria-labelledby={titleId}
+      style={
+        {
+          "--hero-desktop-image": `url("${desktopHeroImage}")`,
+          "--hero-desktop-position": desktopPosition,
+        } as React.CSSProperties
+      }
+    >
       <div className={styles.heroBackground} aria-hidden="true" />
 
       <div className={styles.heroContainer}>
@@ -62,13 +77,23 @@ export const HeroPage = ({
 
         <div className={styles.heroVisual}>
           <Image
-            className={styles.heroImage}
+            className={`${styles.heroImage} ${styles.mobileHeroImage}`}
             src={image}
-            alt={imageAlt}
+            alt={desktopImage ? "" : imageAlt}
             fill
-            preload
-            sizes="(max-width: 767px) 100vw, (max-width: 1180px) 50vw, 570px"
+            preload={!desktopImage}
+            sizes="100vw"
           />
+          {desktopImage ? (
+            <Image
+              className={`${styles.heroImage} ${styles.desktopHeroImage}`}
+              src={desktopImage}
+              alt={imageAlt}
+              fill
+              preload
+              sizes="(min-width: 1024px) 100vw, 40vw"
+            />
+          ) : null}
         </div>
       </div>
     </section>
