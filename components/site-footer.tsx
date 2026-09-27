@@ -42,6 +42,7 @@ export function SiteFooter() {
           <h2 className={styles.footerHeading}>Nawigacja</h2>
           <Link href="/">Strona główna</Link>
           <Link href="/zabiegi">Zabiegi</Link>
+          <Link href="/o-mnie">O mnie</Link>
           <Link href="/cennik">Cennik</Link>
           <Link href="/kontakt">Kontakt</Link>
         </nav>
@@ -76,8 +77,8 @@ export function SiteFooter() {
           </Link>
           <span className={styles.footerDivider} aria-hidden="true" />
           <p className={styles.copyright}>
-            © {siteConfig.legal.copyrightYear} {siteConfig.businessName}. Wszelkie
-            prawa zastrzeżone.
+            © {siteConfig.legal.copyrightYear} {siteConfig.businessName}.
+            Wszelkie prawa zastrzeżone.
           </p>
         </nav>
       </div>

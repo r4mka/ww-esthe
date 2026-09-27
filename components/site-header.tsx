@@ -52,6 +52,11 @@ export function SiteHeader() {
             </Link>
           </li>
           <li>
+            <Link href="/o-mnie" onClick={closeMenu}>
+              O mnie
+            </Link>
+          </li>
+          <li>
             <Link href="/galeria" onClick={closeMenu}>
               Galeria
             </Link>

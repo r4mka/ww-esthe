@@ -1,15 +1,18 @@
 import { GalleryGrid } from "@/components/gallery-grid/gallery-grid";
-import { PageIntro } from "@/components/page-intro";
+import { HeroPage } from "@/components/hero-page";
 import { PageShell } from "@/components/page-shell";
 
 export default function GalleryPage() {
   return (
     <PageShell>
+      <HeroPage
+        eyebrow="Prace WW-Esthe"
+        title="Piękno, które wygląda jak Ty."
+        description="Zobacz moje prace i zainspiruj się nowymi pomysłami."
+        image="/images/heros/hero-4.JPG"
+        imageAlt="Portret klientki prezentujący naturalny efekt pracy WW-Esthe"
+      />
       <section className="section-shell">
-        <PageIntro
-          title="Galeria"
-          description="Zobacz moje prace i zainspiruj się nowymi pomysłami."
-        />
         <GalleryGrid />
       </section>
     </PageShell>
