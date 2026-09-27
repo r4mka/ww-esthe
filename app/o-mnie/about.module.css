@@ -116,7 +116,8 @@
   .credentialsSection {
     grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.3fr);
   }
-}.aboutSection,
+}
+.aboutSection,
 .credentialsSection {
   border-top: 1px solid var(--line);
   display: grid;

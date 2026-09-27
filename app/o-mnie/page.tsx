@@ -37,10 +37,9 @@ export default function AboutPage() {
         eyebrow="O mnie"
         title="Poznajmy się bliżej."
         description="Wierzę, że najlepsze efekty zaczynają się od uważnej rozmowy, zaufania i dobrze dobranego planu."
-        image="/images/heros/hero-5.JPG"
-        desktopImage="/images/hero-about.jpg"
+        image="/images/hero-mobile/hero-aboutme.jpg"
+        desktopImage="/images/hero-mobile/hero-aboutme.jpg"
         imageAlt="Portret kobiety w naturalnym świetle"
-        desktopPosition="42% center"
       />
 
       <section className={`${styles.aboutSection} section-shell`}>

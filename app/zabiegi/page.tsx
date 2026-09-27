@@ -10,11 +10,10 @@ export default function TreatmentsPage() {
         eyebrow="Oferta"
         title="Zabiegi stworzone z myślą o Tobie."
         description="Poznaj zabiegi i wybierz rozwiązanie dopasowane do swoich potrzeb."
-        image="/images/heros/hero-2.jpg"
-  desktopImage="/images/hero-treatments.jpg"
+        image="/images/hero-mobile/hero-treatments.jpg"
+        desktopImage="/images/hero-treatments.jpg"
         imageAlt="Portret klientki związany z naturalną estetyką zabiegów"
         cta={{ label: "Umów konsultację", href: siteConfig.bookingUrl }}
-        desktopPosition="54% center"
       />
       <section className="section-shell">
         <TreatmentList />

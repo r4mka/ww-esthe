@@ -65,10 +65,9 @@ export default function PricingPage() {
         eyebrow="Cennik"
         title="Zabiegi dopasowane do Ciebie."
         description="Przejrzyste informacje o cenach. Ostateczna wycena zależy od indywidualnych potrzeb."
-        image="/images/heros/hero-3.jpg"
-  desktopImage="/images/hero-about.jpg"
+        image="/images/hero-mobile/hero-pricing.jpg"
+        desktopImage="/images/hero-about.jpg"
         imageAlt="Portret klientki w naturalnym świetle"
-        desktopPosition="48% center"
       />
       <section className="section-shell">
         <div className={styles.priceList} aria-label="Cennik zabiegów">

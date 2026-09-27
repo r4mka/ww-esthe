@@ -47,11 +47,6 @@ export function SiteHeader() {
       >
         <ul className={styles.navList}>
           <li>
-            <Link href="/o-mnie" onClick={closeMenu}>
-              O mnie
-            </Link>
-          </li>
-          <li>
             <Link href="/zabiegi" onClick={closeMenu}>
               Zabiegi
             </Link>

@@ -33,7 +33,7 @@ export const HeroPage = ({
   imageAlt,
   cta,
   secondaryCta,
-  desktopPosition = "center center",
+  desktopPosition = "calc(100% - max(2rem, calc((100vw - 1180px) / 2 + 2rem))) center",
 }: HeroPageProps) => {
   const titleId = `${id}-title`;
   const desktopHeroImage = desktopImage ?? image;
@@ -51,6 +51,28 @@ export const HeroPage = ({
       }
     >
       <div className={styles.heroBackground} aria-hidden="true" />
+      <div className={styles.heroVisual}>
+        <Image
+          className={`${styles.heroImage} ${styles.mobileHeroImage}`}
+          src={image}
+          alt={desktopImage ? "" : imageAlt}
+          fill
+          preload={!desktopImage}
+          loading={desktopImage ? "eager" : undefined}
+          sizes="100vw"
+        />
+        {desktopImage ? (
+          <Image
+            className={`${styles.heroImage} ${styles.desktopHeroImage}`}
+            src={desktopImage}
+            alt={imageAlt}
+            fill
+            preload
+            sizes="(min-width: 1024px) 100vw, 40vw"
+          />
+        ) : null}
+      </div>
+      <div className={styles.heroOverlay} aria-hidden="true" />
 
       <div className={styles.heroContainer}>
         <div className={styles.heroContent}>
@@ -72,27 +94,6 @@ export const HeroPage = ({
                 </Link>
               ) : null}
             </div>
-          ) : null}
-        </div>
-
-        <div className={styles.heroVisual}>
-          <Image
-            className={`${styles.heroImage} ${styles.mobileHeroImage}`}
-            src={image}
-            alt={desktopImage ? "" : imageAlt}
-            fill
-            preload={!desktopImage}
-            sizes="100vw"
-          />
-          {desktopImage ? (
-            <Image
-              className={`${styles.heroImage} ${styles.desktopHeroImage}`}
-              src={desktopImage}
-              alt={imageAlt}
-              fill
-              preload
-              sizes="(min-width: 1024px) 100vw, 40vw"
-            />
           ) : null}
         </div>
       </div>
