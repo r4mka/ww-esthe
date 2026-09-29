@@ -67,16 +67,12 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: color 180ms ease;
 
-  > span {
-    display: inline-block;
-    font-size: 1rem;
-    margin-left: 0.35rem;
-    transition: transform 180ms ease;
-  }
-
-  &:hover > span {
-    transform: translateX(0.3rem);
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 }
 
@@ -199,8 +195,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .image,
-  .link > span {
+  .image {
     transition: none;
   }
 }

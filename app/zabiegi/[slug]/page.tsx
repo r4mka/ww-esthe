@@ -31,6 +31,47 @@ const galleryLinks: Record<
   },
 };
 
+type TreatmentFactsProps = {
+  className: string;
+  duration: string;
+  id?: string;
+  price: string;
+  recoveryTime: string;
+  sessionCount: string;
+};
+
+const TreatmentFacts = ({
+  className,
+  duration,
+  id,
+  price,
+  recoveryTime,
+  sessionCount,
+}: TreatmentFactsProps) => (
+  <dl
+    id={id}
+    className={className}
+    aria-label="Podstawowe informacje o zabiegu"
+  >
+    <div>
+      <dt>Cena</dt>
+      <dd>{price}</dd>
+    </div>
+    <div>
+      <dt>Czas trwania</dt>
+      <dd>{duration}</dd>
+    </div>
+    <div>
+      <dt>Rekonwalescencja</dt>
+      <dd>{recoveryTime}</dd>
+    </div>
+    <div>
+      <dt>Liczba zabiegów</dt>
+      <dd>{sessionCount}</dd>
+    </div>
+  </dl>
+);
+
 export function generateStaticParams() {
   return treatments.map(({ slug }) => ({ slug }));
 }
@@ -68,6 +109,14 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
         >
           <div className={styles.heroCopy}>
             <h1 className={styles.heroTitle}>{treatment.title}</h1>
+            <TreatmentFacts
+              id="informacje"
+              className={`${styles.heroFacts} ${styles.mobileHeroFacts} ${styles.anchorSection}`}
+              price={treatment.price}
+              duration={treatment.duration}
+              recoveryTime={treatment.recoveryTime}
+              sessionCount={treatment.sessionCount}
+            />
             <h2 className={styles.heroSubtitle}>Dla kogo jest ten zabieg?</h2>
             {treatment.forWho.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -105,28 +154,13 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <dl
-            id="informacje"
-            className={`${styles.heroFacts} ${styles.anchorSection}`}
-            aria-label="Podstawowe informacje o zabiegu"
-          >
-            <div>
-              <dt>Cena</dt>
-              <dd>{treatment.price}</dd>
-            </div>
-            <div>
-              <dt>Czas trwania</dt>
-              <dd>{treatment.duration}</dd>
-            </div>
-            <div>
-              <dt>Rekonwalescencja</dt>
-              <dd>{treatment.recoveryTime}</dd>
-            </div>
-            <div>
-              <dt>Liczba zabiegów</dt>
-              <dd>{treatment.sessionCount}</dd>
-            </div>
-          </dl>
+          <TreatmentFacts
+            className={`${styles.heroFacts} ${styles.desktopHeroFacts} ${styles.anchorSection}`}
+            price={treatment.price}
+            duration={treatment.duration}
+            recoveryTime={treatment.recoveryTime}
+            sessionCount={treatment.sessionCount}
+          />
         </section>
 
         <section

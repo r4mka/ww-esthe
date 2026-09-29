@@ -42,7 +42,7 @@ export const TreatmentListItem = ({
         <div className={styles.meta}>
           <span>{treatment.price}</span>
           <Link className={styles.link} href={`/zabiegi/${treatment.slug}`}>
-            Zobacz zabieg <span aria-hidden="true">→</span>
+            Zobacz zabieg
           </Link>
         </div>
       </div>
