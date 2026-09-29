@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { CTAButton } from "@/components/cta-button";
@@ -10,6 +11,24 @@ import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
   params: Promise<{ slug: string }>;
+};
+
+const galleryLinks: Record<
+  string,
+  { category: "brwi" | "usta"; label: string }
+> = {
+  "makijaz-permanentny-brwi": {
+    category: "brwi",
+    label: "Zobacz prace brwi",
+  },
+  "makijaz-permanentny-ust": {
+    category: "usta",
+    label: "Zobacz prace ust",
+  },
+  "modelowanie-ust": {
+    category: "usta",
+    label: "Zobacz prace ust",
+  },
 };
 
 export function generateStaticParams() {
@@ -38,6 +57,8 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
     notFound();
   }
 
+  const galleryLink = galleryLinks[treatment.slug];
+
   return (
     <PageShell>
       <article>
@@ -51,7 +72,17 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
             {treatment.forWho.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-            <CTAButton />
+            <div className={styles.heroActions}>
+              <CTAButton />
+              {galleryLink ? (
+                <Link
+                  className="button button-secondary"
+                  href={`/galeria?category=${galleryLink.category}`}
+                >
+                  Zobacz moje prace
+                </Link>
+              ) : null}
+            </div>
           </div>
           <div className={styles.heroImage}>
             <Image

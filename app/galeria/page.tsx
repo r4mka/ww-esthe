@@ -1,16 +1,35 @@
 import { GalleryGrid } from "@/components/gallery-grid/gallery-grid";
+import {
+  isGalleryFilter,
+  type GalleryFilter,
+} from "@/components/gallery-grid/gallery-items";
 import { PageShell } from "@/components/page-shell";
 
 import styles from "./gallery.module.css";
 
-export default function GalleryPage() {
+type GalleryPageProps = {
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+const getInitialCategory = (
+  category: string | string[] | undefined,
+): GalleryFilter => {
+  const value = Array.isArray(category) ? category[0] : category;
+
+  return value && isGalleryFilter(value) ? value : "all";
+};
+
+export default async function GalleryPage({ searchParams }: GalleryPageProps) {
+  const { category } = await searchParams;
+  const initialCategory = getInitialCategory(category);
+
   return (
     <PageShell>
       <section className="section-shell">
         <header className={`section-heading ${styles.pageIntro}`}>
           <h1>Galeria prac</h1>
         </header>
-        <GalleryGrid />
+        <GalleryGrid initialCategory={initialCategory} />
       </section>
     </PageShell>
   );

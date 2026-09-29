@@ -6,26 +6,29 @@ import styles from "./gallery-grid.module.css";
 import {
   galleryCategories,
   galleryItems,
-  type GalleryCategory,
+  type GalleryFilter,
 } from "./gallery-items";
 import { GalleryThumbnail } from "./gallery-thumbnail";
 import { GalleryViewer } from "./gallery-viewer";
 
 type GalleryGridProps = {
   className?: string;
+  initialCategory?: GalleryFilter;
 };
 
-export function GalleryGrid({ className }: GalleryGridProps) {
-  const [activeCategory, setActiveCategory] = useState<"all" | GalleryCategory>(
-    "all",
-  );
+export function GalleryGrid({
+  className,
+  initialCategory = "all",
+}: GalleryGridProps) {
+  const [activeCategory, setActiveCategory] =
+    useState<GalleryFilter>(initialCategory);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const visibleItems =
     activeCategory === "all"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
 
-  const handleCategoryChange = (category: "all" | GalleryCategory) => {
+  const handleCategoryChange = (category: GalleryFilter) => {
     setActiveCategory(category);
     setActiveIndex(null);
   };

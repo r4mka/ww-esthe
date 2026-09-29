@@ -7,6 +7,11 @@ export const galleryCategories = [
   { id: "skora", label: "Skóra" },
 ] as const;
 
+export type GalleryFilter = (typeof galleryCategories)[number]["id"];
+
+export const isGalleryFilter = (value: string): value is GalleryFilter =>
+  galleryCategories.some((category) => category.id === value);
+
 export const galleryItems = [
   {
     src: "/images/491432162_18015506234697649_5081887183424975070_n.jpg",
