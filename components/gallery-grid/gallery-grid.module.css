@@ -1,3 +1,30 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.2rem 0 0.55rem;
+}
+
+.filter:hover,
+.filter:focus-visible,
+.filterActive {
+  color: var(--foreground);
+}
+
+.filterActive {
+  border-bottom-color: var(--foreground);
+}
+
 .grid {
   display: grid;
   gap: 0.15rem;

@@ -2,14 +2,19 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./gallery-grid.module.css";
-import { galleryItems } from "./gallery-items";
+import { galleryItems, type GalleryItem } from "./gallery-items";
 
 type GalleryViewerProps = {
   activeIndex: number;
+  items?: GalleryItem[];
   onClose: () => void;
 };
 
-export function GalleryViewer({ activeIndex, onClose }: GalleryViewerProps) {
+export function GalleryViewer({
+  activeIndex,
+  items = galleryItems,
+  onClose,
+}: GalleryViewerProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const viewerScrollRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +59,7 @@ export function GalleryViewer({ activeIndex, onClose }: GalleryViewerProps) {
         ×
       </button>
       <div className={styles.viewerScroll} ref={viewerScrollRef}>
-        {galleryItems.map((item, index) => (
+        {items.map((item, index) => (
           <article className={styles.viewerItem} key={item.src}>
             <Image
               src={item.src}

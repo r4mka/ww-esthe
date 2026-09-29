@@ -1,0 +1,5 @@
+.pageIntro h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+  margin-bottom: 0;
+}
