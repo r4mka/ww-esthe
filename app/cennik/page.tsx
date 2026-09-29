@@ -1,59 +1,87 @@
-import { HeroPage } from "@/components/hero-page";
+import { CTAButton } from "@/components/cta-button";
 import { PageShell } from "@/components/page-shell";
+import Link from "next/link";
+
 import styles from "./pricing.module.css";
 
-const priceCategories = [
+type PriceItem = {
+  name: string;
+  price: string;
+};
+
+type PriceCategory = {
+  name: string;
+  href?: string;
+  items: PriceItem[];
+};
+
+const priceCategories: PriceCategory[] = [
   {
-    name: "Makijaż permanentny",
+    name: "Makijaż permanentny brwi",
+    href: "/zabiegi/makijaz-permanentny-brwi",
     items: [
-      ["Brwi met. Soft Ombre, Foxy", "800 zł"],
-      ["Usta", "800 zł"],
-      ["Dopigmentowanie 4–6 tyg.", "100 zł"],
-      ["Dopigmentowanie do roku", "600 zł"],
+      { name: "Brwi met. Soft Ombre, Foxy", price: "800 zł" },
+      { name: "Dopigmentowanie 4–6 tyg.", price: "100 zł" },
+      { name: "Dopigmentowanie do roku", price: "600 zł" },
+    ],
+  },
+  {
+    name: "Makijaż permanentny ust",
+    href: "/zabiegi/makijaz-permanentny-ust",
+    items: [
+      { name: "Usta", price: "800 zł" },
+      { name: "Dopigmentowanie 4–6 tyg.", price: "100 zł" },
+      { name: "Dopigmentowanie do roku", price: "600 zł" },
     ],
   },
   {
     name: "Modelowanie ust",
+    href: "/zabiegi/modelowanie-ust",
     items: [
-      ["1 ml", "700 zł"],
-      ["Hialuronidaza miejscowa", "300 zł"],
-      ["Hialuronidaza całe usta", "600 zł"],
+      { name: "1 ml", price: "700 zł" },
+      { name: "Hialuronidaza miejscowa", price: "300 zł" },
+      { name: "Hialuronidaza całe usta", price: "600 zł" },
     ],
   },
   {
     name: "Mezoterapia mikroigłowa",
+    href: "/zabiegi/mezoterapia-mikroiglowa",
     items: [
-      ["Twarz", "350 zł"],
-      ["Twarz / szyja / dekolt", "500 zł"],
+      { name: "Twarz", price: "350 zł" },
+      { name: "Twarz / szyja / dekolt", price: "500 zł" },
     ],
   },
   {
     name: "Stymulatory / mezoterapia igłowa",
+    href: "/zabiegi/stymulatory-tkankowe",
     items: [
-      ["Twarz", "450–800 zł"],
-      ["Okolica oka", "350–600 zł"],
-      ["Twarz / dekolt", "500–900 zł"],
+      { name: "Twarz", price: "450–800 zł" },
+      { name: "Okolica oka", price: "350–600 zł" },
+      { name: "Twarz / dekolt", price: "500–900 zł" },
     ],
   },
   {
     name: "RF radiofrekwencja",
+    href: "/zabiegi/rf-radiofrekwencja",
     items: [
-      ["Twarz + ampułka", "450 zł"],
-      ["Twarz / dekolt + ampułka", "600 zł"],
+      { name: "Twarz + ampułka", price: "450 zł" },
+      { name: "Twarz / dekolt + ampułka", price: "600 zł" },
     ],
   },
   {
     name: "Laserowe usuwanie brwi",
+    href: "/zabiegi/laserowe-usuwanie-brwi",
     items: [
-      ["1 sesja", "200 zł"],
-      ["Ocieplenie / ochłodzenie brwi", "200 zł"],
+      { name: "1 sesja", price: "200 zł" },
+      { name: "Ocieplenie / ochłodzenie brwi", price: "200 zł" },
     ],
   },
   {
     name: "Peelingi",
+    href: "/zabiegi/peelingi",
     items: [
-      ["Peeling chemiczny", "350 zł"],
-      ["Peeling węglowy", "300 zł"],
+      { name: "Peeling chemiczny", price: "350 zł" },
+      { name: "Peeling węglowy", price: "300 zł" },
     ],
   },
 ];
@@ -61,29 +89,45 @@ const priceCategories = [
 export default function PricingPage() {
   return (
     <PageShell>
-      <HeroPage
-        eyebrow="Cennik"
-        title="Zabiegi dopasowane do Ciebie."
-        description="Przejrzyste informacje o cenach. Ostateczna wycena zależy od indywidualnych potrzeb."
-        image="/images/hero-mobile/hero-pricing.jpg"
-        desktopImage="/images/hero-about.jpg"
-        imageAlt="Portret klientki w naturalnym świetle"
-      />
       <section className="section-shell">
+        <header className={`section-heading ${styles.pageIntro}`}>
+          <h1>Cennik zabiegów</h1>
+        </header>
         <div className={styles.priceList} aria-label="Cennik zabiegów">
           {priceCategories.map((category) => (
             <section className={styles.priceCategory} key={category.name}>
-              <h2>{category.name}</h2>
+              <h2>
+                {category.href ? (
+                  <Link className={styles.categoryLink} href={category.href}>
+                    {category.name}
+                  </Link>
+                ) : (
+                  category.name
+                )}
+              </h2>
               <dl>
-                {category.items.map(([name, price]) => (
-                  <div className={styles.priceRow} key={name}>
-                    <dt>{name}</dt>
-                    <dd>{price}</dd>
+                {category.items.map((item) => (
+                  <div className={styles.priceRow} key={item.name}>
+                    <dt>{item.name}</dt>
+                    <dd>{item.price}</dd>
                   </div>
                 ))}
               </dl>
             </section>
           ))}
+        </div>
+      </section>
+      <section className={styles.bookingSection}>
+        <div className="section-shell">
+          <div className={styles.bookingContent}>
+            <p className="eyebrow">Konsultacja</p>
+            <h2>Nie wiesz, który zabieg wybrać?</h2>
+            <p>
+              Napisz, a wspólnie dobierzemy rozwiązanie dopasowane do Twoich
+              potrzeb.
+            </p>
+            <CTAButton />
+          </div>
         </div>
       </section>
     </PageShell>

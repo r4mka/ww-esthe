@@ -1,6 +1,11 @@
+.pageIntro h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+}
+
 .priceList {
   border-top: 1px solid var(--line);
-  max-width: 48rem;
+  max-width: none;
 }
 
 .priceCategory {
@@ -12,6 +17,23 @@
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-style: italic;
   margin: 0 0 1rem;
+}
+
+.categoryLink {
+  transition: color 180ms ease;
+}
+
+.categoryLink:hover {
+  color: var(--beige);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.categoryLink {
+  align-items: baseline;
+  display: inline-flex;
+  gap: 0.5rem;
 }
 
 .priceCategory dl {
@@ -34,4 +56,29 @@
 .priceRow dd {
   margin: 0;
   white-space: nowrap;
+}
+
+.bookingSection {
+  background: var(--section-tint);
+}
+
+.bookingContent {
+  max-width: 36rem;
+}
+
+.bookingContent h2 {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  margin-bottom: 0.85rem;
+}
+
+.bookingContent p:not(.eyebrow) {
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .priceList {
+    column-gap: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
