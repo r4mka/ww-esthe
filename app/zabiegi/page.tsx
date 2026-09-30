@@ -14,9 +14,9 @@ export default function TreatmentsPage() {
         imageAlt="Portret klientki związany z naturalną estetyką zabiegów"
         cta={{ label: "Umów konsultację", href: siteConfig.bookingUrl }}
       />
-      <section className="section-shell">
+      <div className="section-shell">
         <TreatmentList />
-      </section>
+      </div>
     </>
   );
 }

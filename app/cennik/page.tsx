@@ -92,7 +92,7 @@ export default function PricingPage() {
         <header className={`section-heading ${styles.pageIntro}`}>
           <h1>Cennik zabiegów</h1>
         </header>
-        <div className={styles.priceList} aria-label="Cennik zabiegów">
+        <div className={styles.priceList}>
           {priceCategories.map((category) => (
             <section className={styles.priceCategory} key={category.name}>
               <h2>
