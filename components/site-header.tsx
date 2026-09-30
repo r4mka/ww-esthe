@@ -2,17 +2,82 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./site-header.module.css";
 
+// Scroll distance (px) needed to go from fully expanded to fully collapsed.
+const COLLAPSE_SCROLL_DISTANCE = 160;
+const EXPAND_NEAR_TOP_THRESHOLD = 16;
+
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const collapseRef = useRef(0);
+  const lastScrollY = useRef(0);
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const applyCollapse = (value: number) => {
+      header.style.setProperty("--collapse", String(value));
+      header.classList.toggle(styles.collapsed, value >= 0.99);
+    };
+
+    lastScrollY.current = window.scrollY;
+    let ticking = false;
+
+    const updateCollapse = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      // Tie the collapse progress directly to how far/fast the user scrolls.
+      const nextValue =
+        currentScrollY <= EXPAND_NEAR_TOP_THRESHOLD
+          ? 0
+          : Math.min(
+              1,
+              Math.max(
+                0,
+                collapseRef.current + delta / COLLAPSE_SCROLL_DISTANCE,
+              ),
+            );
+
+      collapseRef.current = nextValue;
+      applyCollapse(nextValue);
+      lastScrollY.current = currentScrollY;
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateCollapse);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Keep the header expanded while the mobile menu is open.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header || !isMenuOpen) return;
+
+    collapseRef.current = 0;
+    header.style.setProperty("--collapse", "0");
+    header.classList.remove(styles.collapsed);
+  }, [isMenuOpen]);
+
   return (
-    <header className={`${styles.siteHeader} relative flex-wrap`}>
+    <header
+      ref={headerRef}
+      className={`${styles.siteHeader} relative flex-wrap`}
+    >
       <Link
         className={styles.brand}
         href="/"

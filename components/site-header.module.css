@@ -1,6 +1,8 @@
 .siteHeader {
+  --collapse: 0;
   align-items: center;
-  border-bottom: 1px solid var(--line);
+  border-bottom: calc(1px + (0.425rem - 1px) * var(--collapse)) solid
+    var(--beige);
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
@@ -8,17 +10,28 @@
   margin: 0;
   max-width: none;
   padding: 1.25rem;
+  padding-top: calc(1.25rem * (1 - var(--collapse)));
+  padding-bottom: calc(1.25rem * (1 - var(--collapse)));
   position: fixed;
   right: 0;
   top: 0;
-  height: var(--header-height);
+  height: calc(var(--header-height) * (1 - var(--collapse)));
   width: 100%;
   background: var(--background);
+  overflow: hidden;
   z-index: 10;
+  transition: border-bottom-width 80ms linear;
+}
+
+.collapsed .brand,
+.collapsed .menuButton,
+.collapsed .nav {
+  pointer-events: none;
 }
 
 .brand {
   display: block;
+  opacity: calc(1 - var(--collapse));
   white-space: nowrap;
 }
 
@@ -38,6 +51,7 @@
   gap: 0.375rem;
   height: 2.5rem;
   justify-content: center;
+  opacity: calc(1 - var(--collapse));
   padding: 0;
   pointer-events: auto;
   position: relative;
@@ -84,6 +98,12 @@
   color: var(--foreground);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .siteHeader {
+    transition: none;
+  }
+}
+
 @media (min-width: 640px) {
   .siteHeader {
     padding-left: max(2rem, calc((100% - 1180px) / 2 + 2rem));
@@ -100,6 +120,7 @@
 
   .nav {
     display: block;
+    opacity: calc(1 - var(--collapse));
     position: static;
     padding: 0;
     background: transparent;
