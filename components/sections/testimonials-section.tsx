@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { PageSection } from "@/components/page-section";
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import styles from "./testimonials-section.module.css";
@@ -37,16 +38,14 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section
-      className={`${styles.testimonialSection} section-shell`}
-      aria-labelledby="testimonials-title"
+    <PageSection
+      className={styles.testimonialSection}
+      eyebrow="Opinie"
+      title="Co mówią klientki"
+      id="opinie"
     >
-      <div className="section-heading">
-        <p className="eyebrow">Opinie</p>
-        <h2 id="testimonials-title">Co mówią klientki</h2>
-      </div>
       <TestimonialCarousel />
-    </section>
+    </PageSection>
   );
 }
 

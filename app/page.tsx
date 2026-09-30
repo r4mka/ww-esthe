@@ -26,7 +26,7 @@ export default function Home() {
         <TreatmentsSection />
         <ProcessSection />
         <GallerySection />
-        <FaqSection />
+        <FaqSection id="homepage-faq" />
         <TestimonialsSection />
       </main>
       <SiteFooter />

@@ -1,4 +1,5 @@
 import { FaqItem } from "@/components/faq-item";
+import { PageSection } from "@/components/page-section";
 
 const homeFaqs = [
   {
@@ -15,21 +16,33 @@ const homeFaqs = [
   },
 ];
 
-export function FaqSection() {
+type FaqSectionProps = {
+  className?: string;
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  faqs?: readonly { question: string; answer: string }[];
+};
+
+export function FaqSection({
+  className = "",
+  id,
+  eyebrow,
+  title = "Wszystko o co chciałabyś zapytać",
+  faqs = homeFaqs,
+}: FaqSectionProps) {
   return (
-    <section
-      className="section-shell section-tinted faq-section"
-      aria-labelledby="faq-title"
+    <PageSection
+      className={`section-tinted faq-section ${className}`}
+      id={id}
+      eyebrow={eyebrow}
+      title={title}
     >
-      <div className="section-heading">
-        <p className="eyebrow">Informacje</p>
-        <h2 id="faq-title">Wszystko o co chciałabyś zapytać</h2>
-      </div>
       <div>
-        {homeFaqs.map((faq) => (
+        {faqs.map((faq) => (
           <FaqItem key={faq.question} {...faq} />
         ))}
       </div>
-    </section>
+    </PageSection>
   );
 }

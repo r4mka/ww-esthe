@@ -19,6 +19,8 @@ export const siteConfig = {
   social: {
     instagram: "https://instagram.com/wiktoria.warylak.esthe",
     facebook: "https://www.facebook.com/p/Wiktoria-Warylak-PMU-61571133683099/",
+    whatsapp: "https://wa.me/48780182458",
+    messenger: "https://m.me/61571133683099",
   },
   bookingUrl: "https://ig.me/m/wiktoria.warylak.esthe",
   openingHours: [
@@ -29,5 +31,16 @@ export const siteConfig = {
     copyrightYear: 2026,
     privacyPolicyPath: "/polityka-prywatnosci",
     termsPath: "/regulamin",
+  },
+  company: {
+    legalName: "Wiktoria Warylak Esthe",
+    registeredAddress: ["ul. Adama Mickiewicza 4A", "72-420 Dziwnów"],
+    nip: "9860269048",
+    regon: "545249482",
+    bank: {
+      name: "PKO Bank Polski",
+      accountNumber: "00 0000 0000 0000 0000 0000 0000",
+      isExample: true,
+    },
   },
 } as const;

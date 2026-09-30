@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { PageSection } from "@/components/page-section";
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import styles from "./process-section.module.css";
@@ -29,17 +30,13 @@ export function ProcessSection() {
   });
 
   return (
-    <section
-      className="section-shell section-tinted"
-      id="process"
-      aria-labelledby="process-title"
+    <PageSection
+      className="section-tinted"
+      id="wizyta-krok-po-kroku"
+      headingClassName={styles.processIntro}
+      eyebrow="Nasze podejście"
+      title="Twoja wizyta krok po kroku"
     >
-      <div className={styles.processIntro}>
-        <div className="section-heading">
-          <p className="eyebrow">Nasze podejście</p>
-          <h2 id="process-title">Twoja wizyta krok po kroku</h2>
-        </div>
-      </div>
       <div className={styles.processTimeline}>
         <ProcessTrack activeStep={activeStep} onSelectStep={setActiveStep} />
         <div
@@ -64,6 +61,6 @@ export function ProcessSection() {
           </div>
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

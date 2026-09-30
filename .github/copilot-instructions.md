@@ -38,10 +38,12 @@ Project Structure
 
 Use the existing structure:
 
-- app/ — Next.js routes, layouts and global styles
-- components/ — reusable React components and page sections
+- app/ — Next.js routes, layouts, global styles, and route-local components
+- components/ — React components shared across routes
 - data/ — static website content and structured data
 - public/ — static images and other public assets
+
+Place components used only by one route in that route's `app/<route>/components/` directory. Reserve the top-level `components/` directory for components shared across routes. If a route-local component becomes shared, move it to the top-level `components/` directory and update its imports.
 
 Do not introduce a new top-level directory for functionality that already has an appropriate location.
 
@@ -117,6 +119,8 @@ TypeScript
 Use TypeScript throughout the project.
 
 Prefer explicit, useful types for component props and structured data.
+
+List required props before optional props in both the props type or interface and the component's parameter or destructuring list.
 
 Do not use any unless there is a strong technical reason.
 
