@@ -165,7 +165,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
 
         <section
           id="przygotowanie-do-zabiegu"
-          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell section-tinted`}
+          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
         >
           <div>
             <h2>Przygotowanie do zabiegu</h2>
@@ -193,7 +193,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
 
         <section
           id="reakcje-pozabiegowe"
-          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell section-tinted`}
+          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell`}
         >
           <h2>Możliwe reakcje pozabiegowe</h2>
           <div className={styles.copyColumn}>

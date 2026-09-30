@@ -1,12 +1,21 @@
+import Link from "next/link";
+
+import { Carousel } from "@/components/carousel";
 import { HeroPage } from "@/components/hero-page";
-import { FaqSection } from "@/components/sections/faq-section";
-import { GallerySection } from "@/components/sections/gallery-section";
-import { ProcessSection } from "@/components/sections/process-section/process-section";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
-import { TreatmentsSection } from "@/components/sections/treatments-section";
+import { PageSection } from "@/components/page-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { Testimonial } from "@/components/testimonial";
+import { TreatmentListItem } from "@/components/treatment-list-item";
 import { siteConfig } from "@/data/site-config";
+import { testimonials } from "@/data/testimonials";
+import { treatments } from "@/data/treatments";
+
+import { FaqItem } from "@/components/faq-item";
+import { GalleryPreview } from "@/components/gallery-grid/gallery-preview";
+import { Visit } from "@/components/visit";
+import { homeFaqs } from "@/data/faq";
+import styles from "./homepage.module.css";
 
 export default function Home() {
   return (
@@ -23,11 +32,73 @@ export default function Home() {
           cta={{ label: "Umów konsultację", href: siteConfig.bookingUrl }}
           secondaryCta={{ label: "Zobacz usługi", href: "/zabiegi" }}
         />
-        <TreatmentsSection />
-        <ProcessSection />
-        <GallerySection />
-        <FaqSection id="homepage-faq" />
-        <TestimonialsSection />
+
+        <PageSection
+          id="popularne-zabiegi"
+          eyebrow="Oferta"
+          title="Zabiegi"
+          description="Wybrane zabiegi dopasowane do Twoich potrzeb."
+        >
+          <div className={`${styles.list} ${styles.grid}`}>
+            {treatments.slice(0, 3).map((treatment) => (
+              <TreatmentListItem
+                key={treatment.slug}
+                treatment={treatment}
+                variant="grid"
+              />
+            ))}
+          </div>
+          <Link className="button button-secondary" href="/zabiegi">
+            Poznaj całą ofertę
+          </Link>
+        </PageSection>
+
+        <PageSection
+          id="wizyta-krok-po-kroku"
+          headingClassName={styles.visitIntro}
+          eyebrow="Nasze podejście"
+          title="Twoja wizyta krok po kroku"
+        >
+          <Visit />
+        </PageSection>
+
+        <PageSection
+          id="homepage-gallery"
+          eyebrow="Atmosfera"
+          title="Moje prace"
+          description="Zobacz efekty zabiegów i poznaj estetykę WW-Esthe."
+        >
+          <GalleryPreview
+            className={styles.fullWidthGallery}
+            previewCount={3}
+          />
+          <Link className="button button-secondary" href="/galeria">
+            Zobacz całą galerię
+          </Link>
+        </PageSection>
+
+        <PageSection
+          className="section-tinted"
+          id="homepage-faq"
+          eyebrow="Najczęściej zadawane pytania"
+          title="Wszystko o co chciałabyś zapytać"
+        >
+          {homeFaqs.map((faq) => (
+            <FaqItem key={faq.question} {...faq} />
+          ))}
+        </PageSection>
+
+        <PageSection eyebrow="Opinie" title="Co mówią klientki" id="opinie">
+          <Carousel ariaLabel="Nawigacja opinii" autoPlayInterval={5000}>
+            {testimonials.map((testimonial) => (
+              <Testimonial
+                key={testimonial.quote}
+                quote={testimonial.quote}
+                author={testimonial.author}
+              />
+            ))}
+          </Carousel>
+        </PageSection>
       </main>
       <SiteFooter />
     </div>

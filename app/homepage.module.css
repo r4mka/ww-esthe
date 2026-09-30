@@ -1,6 +1,23 @@
+.list {
+  display: grid;
+  gap: 0;
+}
+
 .fullWidthGallery {
   margin-left: -1.25rem;
   width: calc(100% + 2.5rem);
+}
+
+.visitIntro {
+  display: block;
+  margin-bottom: 3.25rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {

@@ -1,20 +1,20 @@
 import { ArrowRight, RotateCcw } from "lucide-react";
 
-import styles from "./process-section.module.css";
-import type { ProcessStep } from "./steps";
+import type { VisitStepData } from "./visit-steps";
+import styles from "./visit.module.css";
 
-interface ProcessStepProps {
+interface VisitStepProps {
   isLastStep: boolean;
   onNext: () => void;
-  step: ProcessStep;
+  step: VisitStepData;
 }
 
-export function ProcessStep({ isLastStep, onNext, step }: ProcessStepProps) {
+export const VisitStep = ({ isLastStep, onNext, step }: VisitStepProps) => {
   const Icon = step.icon;
 
   return (
-    <article className={styles.processSlide}>
-      <div className={styles.processSlideContent}>
+    <article className={styles.visitSlide}>
+      <div className={styles.visitSlideContent}>
         <div className={styles.stepIcon} aria-hidden="true">
           <Icon size={22} strokeWidth={1.6} />
         </div>
@@ -22,7 +22,7 @@ export function ProcessStep({ isLastStep, onNext, step }: ProcessStepProps) {
         <h3>{step.title}</h3>
         <p>{step.text}</p>
       </div>
-      <div className={styles.processNavigation}>
+      <div className={styles.visitNavigation}>
         <button
           className={styles.nextStepButton}
           type="button"
@@ -38,4 +38,4 @@ export function ProcessStep({ isLastStep, onNext, step }: ProcessStepProps) {
       </div>
     </article>
   );
-}
+};

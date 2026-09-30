@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
+import { FaqItem } from "@/components/faq-item";
+import { PageSection } from "@/components/page-section";
 import { PageShell } from "@/components/page-shell";
-import { FaqSection } from "@/components/sections/faq-section";
-import { contactFaqs } from "@/data/contact-faqs";
+import { contactFaqs } from "@/data/faq";
 
 import { AddressSection } from "./components/address-section";
 import { BusinessInfo } from "./components/business-info";
@@ -19,11 +20,15 @@ export default function ContactPage() {
     <PageShell>
       <AddressSection />
       <ContactSection />
-      <FaqSection
+      <PageSection
+        className="section-tinted"
         id="contact-faq"
         title="Najczęstsze pytania"
-        faqs={contactFaqs}
-      />
+      >
+        {contactFaqs.map((faq) => (
+          <FaqItem key={faq.question} {...faq} />
+        ))}
+      </PageSection>
       <BusinessInfo />
     </PageShell>
   );

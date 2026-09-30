@@ -5,7 +5,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export const steps = [
+export const visitSteps = [
   {
     number: "1",
     title: "Konsultacja",
@@ -36,4 +36,4 @@ export const steps = [
   },
 ];
 
-export type ProcessStep = (typeof steps)[number];
+export type VisitStepData = (typeof visitSteps)[number];

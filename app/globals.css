@@ -66,13 +66,9 @@ a {
 
 .section-tinted {
   max-width: none;
+  background: var(--section-tint);
   padding-left: max(1.25rem, calc((100% - 1180px) / 2 + 1.25rem));
   padding-right: max(1.25rem, calc((100% - 1180px) / 2 + 1.25rem));
-  background: transparent;
-}
-
-.faq-section {
-  background: var(--section-tint);
 }
 
 .eyebrow {

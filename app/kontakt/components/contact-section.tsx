@@ -25,7 +25,6 @@ const channels = [
 export function ContactSection() {
   return (
     <PageSection
-      className="section-tinted"
       title="Napisz do mnie"
       id="napisz-do-mnie"
       description="Odpowiadam na wiadomości najczęściej w ciągu dnia roboczego. Napisz kilka słów o tym, co Cię interesuje, a wspólnie ustalimy termin."

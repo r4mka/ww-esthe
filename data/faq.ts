@@ -1,3 +1,18 @@
+export const homeFaqs = [
+  {
+    question: "Jak przygotować się do wizyty?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+  {
+    question: "Ile trwa konsultacja?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+  {
+    question: "Jak wybrać właściwy zabieg?",
+    answer: "Przykładowa odpowiedź, którą później zastąpimy właściwą treścią.",
+  },
+];
+
 export const contactFaqs = [
   {
     question: "Czy przy gabinecie jest darmowy parking?",
