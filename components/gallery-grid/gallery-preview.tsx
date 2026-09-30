@@ -5,8 +5,12 @@ import { useState } from "react";
 
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
+import { GalleryFilter } from "./gallery-filter";
 import styles from "./gallery-grid.module.css";
-import { galleryItems } from "./gallery-items";
+import {
+  galleryItems,
+  type GalleryFilter as GalleryFilterValue,
+} from "./gallery-items";
 import { GalleryThumbnail } from "./gallery-thumbnail";
 import { GalleryViewer } from "./gallery-viewer";
 
@@ -19,12 +23,18 @@ export function GalleryPreview({
   className,
   previewCount,
 }: GalleryPreviewProps) {
+  const [activeCategory, setActiveCategory] =
+    useState<GalleryFilterValue>("all");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [previewStart, setPreviewStart] = useState(0);
+  const visibleItems =
+    activeCategory === "all"
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory);
 
   const movePreview = (direction: "next" | "previous") => {
     setPreviewStart((currentStart) => {
-      const lastStart = Math.max(galleryItems.length - previewCount, 0);
+      const lastStart = Math.max(visibleItems.length - previewCount, 0);
       const nextStart =
         direction === "next"
           ? currentStart + previewCount
@@ -58,8 +68,18 @@ export function GalleryPreview({
     setActiveIndex(index);
   };
 
+  const handleCategoryChange = (category: GalleryFilterValue) => {
+    setActiveCategory(category);
+    setActiveIndex(null);
+    setPreviewStart(0);
+  };
+
   return (
     <>
+      <GalleryFilter
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
       <div
         className={`${styles.previewViewport} ${className ?? ""}`}
         onPointerCancel={onPointerCancel}
@@ -70,12 +90,12 @@ export function GalleryPreview({
           className={styles.previewTrack}
           style={
             {
-              "--preview-item-count": galleryItems.length,
-              transform: `translateX(-${(previewStart / galleryItems.length) * 100}%)`,
+              "--preview-item-count": visibleItems.length,
+              transform: `translateX(-${(previewStart / visibleItems.length) * 100}%)`,
             } as CSSProperties
           }
         >
-          {galleryItems.map((item, index) => (
+          {visibleItems.map((item, index) => (
             <GalleryThumbnail
               item={item}
               key={item.src}
@@ -87,6 +107,7 @@ export function GalleryPreview({
       {activeIndex !== null && (
         <GalleryViewer
           activeIndex={activeIndex}
+          items={visibleItems}
           onClose={() => setActiveIndex(null)}
         />
       )}

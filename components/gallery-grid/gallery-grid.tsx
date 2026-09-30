@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 
+import { GalleryFilter } from "./gallery-filter";
 import styles from "./gallery-grid.module.css";
 import {
-  galleryCategories,
   galleryItems,
-  type GalleryFilter,
+  type GalleryFilter as GalleryFilterValue,
 } from "./gallery-items";
 import { GalleryThumbnail } from "./gallery-thumbnail";
 import { GalleryViewer } from "./gallery-viewer";
 
 type GalleryGridProps = {
   className?: string;
-  initialCategory?: GalleryFilter;
+  initialCategory?: GalleryFilterValue;
 };
 
 export function GalleryGrid({
@@ -21,41 +21,24 @@ export function GalleryGrid({
   initialCategory = "all",
 }: GalleryGridProps) {
   const [activeCategory, setActiveCategory] =
-    useState<GalleryFilter>(initialCategory);
+    useState<GalleryFilterValue>(initialCategory);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const visibleItems =
     activeCategory === "all"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
 
-  const handleCategoryChange = (category: GalleryFilter) => {
+  const handleCategoryChange = (category: GalleryFilterValue) => {
     setActiveCategory(category);
     setActiveIndex(null);
   };
 
   return (
     <>
-      <div
-        className={styles.filters}
-        role="group"
-        aria-label="Kategorie galerii"
-      >
-        {galleryCategories.map((category) => (
-          <button
-            className={
-              category.id === activeCategory
-                ? `${styles.filter} ${styles.filterActive}`
-                : styles.filter
-            }
-            type="button"
-            aria-pressed={category.id === activeCategory}
-            key={category.id}
-            onClick={() => handleCategoryChange(category.id)}
-          >
-            {category.label}
-          </button>
-        ))}
-      </div>
+      <GalleryFilter
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
       <div className={`${styles.grid} ${className ?? ""}`}>
         {visibleItems.map((item, index) => (
           <GalleryThumbnail
