@@ -1,0 +1,51 @@
+.page {
+  display: grid;
+  gap: 2rem;
+  max-width: 48rem;
+}
+
+.updated {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: -0.75rem;
+}
+
+.section {
+  border-top: 1px solid var(--line);
+  padding-top: 1.75rem;
+}
+
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.section h2 {
+  font-size: 1.4rem;
+}
+
+.section p + p {
+  margin-top: 0.75rem;
+}
+
+.section ul {
+  color: var(--muted);
+  display: grid;
+  gap: 0.6rem;
+  line-height: 1.6;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.section li {
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.section li::before {
+  color: var(--beige);
+  content: "—";
+  left: 0;
+  position: absolute;
+}
