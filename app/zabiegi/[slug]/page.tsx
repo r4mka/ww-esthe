@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 
 import { CTAButton } from "@/components/cta-button";
 import { FaqItem } from "@/components/faq-item";
-import { PageShell } from "@/components/page-shell";
 import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
 import styles from "./treatment-detail.module.css";
 
@@ -101,137 +100,135 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
   const galleryLink = galleryLinks[treatment.slug];
 
   return (
-    <PageShell>
-      <article>
-        <section
-          id="wprowadzenie"
-          className={`${styles.hero} ${styles.anchorSection} section-shell`}
-        >
-          <div className={styles.heroCopy}>
-            <h1 className={styles.heroTitle}>{treatment.title}</h1>
-            <TreatmentFacts
-              id="informacje"
-              className={`${styles.heroFacts} ${styles.mobileHeroFacts} ${styles.anchorSection}`}
-              price={treatment.price}
-              duration={treatment.duration}
-              recoveryTime={treatment.recoveryTime}
-              sessionCount={treatment.sessionCount}
-            />
-            <h2 className={styles.heroSubtitle}>Dla kogo jest ten zabieg?</h2>
-            {treatment.forWho.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-            <div className={styles.heroActions}>
-              <CTAButton />
-              {galleryLink ? (
-                <Link
-                  className="button button-secondary"
-                  href={`/galeria?category=${galleryLink.category}`}
-                >
-                  Zobacz moje prace
-                </Link>
-              ) : null}
-            </div>
-          </div>
-          <div className={styles.heroImage}>
-            <Image
-              className={styles.heroImageFile}
-              src={getTreatmentImage(treatment.slug)}
-              alt={treatment.imageAlt}
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-          </div>
-        </section>
-
-        <section
-          id="opis-zabiegu"
-          className={`${styles.content} ${styles.copyContent} ${styles.copyContentNoDivider} ${styles.anchorSection} section-shell`}
-        >
-          <h2>Na czym polega zabieg?</h2>
-          <div className={styles.copyColumn}>
-            {treatment.description.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+    <article>
+      <section
+        id="wprowadzenie"
+        className={`${styles.hero} ${styles.anchorSection} section-shell`}
+      >
+        <div className={styles.heroCopy}>
+          <h1 className={styles.heroTitle}>{treatment.title}</h1>
           <TreatmentFacts
-            className={`${styles.heroFacts} ${styles.desktopHeroFacts} ${styles.anchorSection}`}
+            id="informacje"
+            className={`${styles.heroFacts} ${styles.mobileHeroFacts} ${styles.anchorSection}`}
             price={treatment.price}
             duration={treatment.duration}
             recoveryTime={treatment.recoveryTime}
             sessionCount={treatment.sessionCount}
           />
-        </section>
-
-        <section
-          id="przygotowanie-do-zabiegu"
-          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
-        >
-          <div>
-            <h2>Przygotowanie do zabiegu</h2>
-            <ol className={`${styles.list} ${styles.orderedList}`}>
-              {treatment.preparation.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
+          <h2 className={styles.heroSubtitle}>Dla kogo jest ten zabieg?</h2>
+          {treatment.forWho.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <div className={styles.heroActions}>
+            <CTAButton />
+            {galleryLink ? (
+              <Link
+                className="button button-secondary"
+                href={`/galeria?category=${galleryLink.category}`}
+              >
+                Zobacz moje prace
+              </Link>
+            ) : null}
           </div>
-        </section>
+        </div>
+        <div className={styles.heroImage}>
+          <Image
+            className={styles.heroImageFile}
+            src={getTreatmentImage(treatment.slug)}
+            alt={treatment.imageAlt}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        </div>
+      </section>
 
-        <section
-          id="przeciwwskazania"
-          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
-        >
-          <div>
-            <h2>Przeciwwskazania</h2>
-            <ul className={`${styles.list} ${styles.unorderedList}`}>
-              {treatment.contraindications.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
+      <section
+        id="opis-zabiegu"
+        className={`${styles.content} ${styles.copyContent} ${styles.copyContentNoDivider} ${styles.anchorSection} section-shell`}
+      >
+        <h2>Na czym polega zabieg?</h2>
+        <div className={styles.copyColumn}>
+          {treatment.description.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <TreatmentFacts
+          className={`${styles.heroFacts} ${styles.desktopHeroFacts} ${styles.anchorSection}`}
+          price={treatment.price}
+          duration={treatment.duration}
+          recoveryTime={treatment.recoveryTime}
+          sessionCount={treatment.sessionCount}
+        />
+      </section>
 
-        <section
-          id="reakcje-pozabiegowe"
-          className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell`}
-        >
-          <h2>Możliwe reakcje pozabiegowe</h2>
-          <div className={styles.copyColumn}>
-            {treatment.possibleReactions.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+      <section
+        id="przygotowanie-do-zabiegu"
+        className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
+      >
+        <div>
+          <h2>Przygotowanie do zabiegu</h2>
+          <ol className={`${styles.list} ${styles.orderedList}`}>
+            {treatment.preparation.map((item) => (
+              <li key={item}>{item}</li>
             ))}
-          </div>
-        </section>
+          </ol>
+        </div>
+      </section>
 
-        <section
-          id="zalecenia-pozabiegowe"
-          className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
-        >
-          <div>
-            <h2>Zalecenia pozabiegowe</h2>
-            <ul className={`${styles.list} ${styles.unorderedList}`}>
-              {treatment.aftercare.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section
-          id="faq"
-          className={`${styles.content} ${styles.faqSection} ${styles.anchorSection} section-shell section-tinted`}
-          aria-labelledby="faq-title"
-        >
-          <div>
-            <h2 id="faq-title">Najczęściej zadawane pytania</h2>
-          </div>
-          <div>
-            {treatment.faqs.map((faq) => (
-              <FaqItem key={faq.question} {...faq} />
+      <section
+        id="przeciwwskazania"
+        className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
+      >
+        <div>
+          <h2>Przeciwwskazania</h2>
+          <ul className={`${styles.list} ${styles.unorderedList}`}>
+            {treatment.contraindications.map((item) => (
+              <li key={item}>{item}</li>
             ))}
-          </div>
-        </section>
-      </article>
-    </PageShell>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="reakcje-pozabiegowe"
+        className={`${styles.content} ${styles.copyContent} ${styles.anchorSection} section-shell`}
+      >
+        <h2>Możliwe reakcje pozabiegowe</h2>
+        <div className={styles.copyColumn}>
+          {treatment.possibleReactions.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="zalecenia-pozabiegowe"
+        className={`${styles.content} ${styles.listContent} ${styles.anchorSection} section-shell`}
+      >
+        <div>
+          <h2>Zalecenia pozabiegowe</h2>
+          <ul className={`${styles.list} ${styles.unorderedList}`}>
+            {treatment.aftercare.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="faq"
+        className={`${styles.content} ${styles.faqSection} ${styles.anchorSection} section-shell section-tinted`}
+        aria-labelledby="faq-title"
+      >
+        <div>
+          <h2 id="faq-title">Najczęściej zadawane pytania</h2>
+        </div>
+        <div>
+          {treatment.faqs.map((faq) => (
+            <FaqItem key={faq.question} {...faq} />
+          ))}
+        </div>
+      </section>
+    </article>
   );
 }

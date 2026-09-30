@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { FaqItem } from "@/components/faq-item";
 import { PageSection } from "@/components/page-section";
-import { PageShell } from "@/components/page-shell";
 import { contactFaqs } from "@/data/faq";
 
 import { AddressSection } from "./components/address-section";
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageShell>
+    <>
       <AddressSection />
       <ContactSection />
       <PageSection
@@ -30,6 +29,6 @@ export default function ContactPage() {
         ))}
       </PageSection>
       <BusinessInfo />
-    </PageShell>
+    </>
   );
 }

@@ -1,12 +1,11 @@
-import { HeroPage } from "@/components/hero-page";
-import { PageShell } from "@/components/page-shell";
+import { PageHero } from "@/components/page-hero";
 import { TreatmentList } from "@/components/treatment-list";
 import { siteConfig } from "@/data/site-config";
 
 export default function TreatmentsPage() {
   return (
-    <PageShell>
-      <HeroPage
+    <>
+      <PageHero
         eyebrow="Oferta"
         title="Zabiegi stworzone z myślą o Tobie."
         description="Poznaj zabiegi i wybierz rozwiązanie dopasowane do swoich potrzeb."
@@ -18,6 +17,6 @@ export default function TreatmentsPage() {
       <section className="section-shell">
         <TreatmentList />
       </section>
-    </PageShell>
+    </>
   );
 }

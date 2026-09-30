@@ -1,5 +1,4 @@
 import { CTAButton } from "@/components/cta-button";
-import { PageShell } from "@/components/page-shell";
 import Link from "next/link";
 
 import styles from "./pricing.module.css";
@@ -88,7 +87,7 @@ const priceCategories: PriceCategory[] = [
 
 export default function PricingPage() {
   return (
-    <PageShell>
+    <>
       <section className="section-shell">
         <header className={`section-heading ${styles.pageIntro}`}>
           <h1>Cennik zabiegów</h1>
@@ -130,6 +129,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-    </PageShell>
+    </>
   );
 }

@@ -23,7 +23,7 @@ interface HeroPageProps {
   desktopPosition?: string;
 }
 
-export const HeroPage = ({
+export const PageHero = ({
   id = "hero",
   eyebrow,
   title,

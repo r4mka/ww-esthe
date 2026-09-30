@@ -3,7 +3,6 @@ import {
   isGalleryFilter,
   type GalleryFilter,
 } from "@/components/gallery-grid/gallery-items";
-import { PageShell } from "@/components/page-shell";
 
 import styles from "./gallery.module.css";
 
@@ -24,13 +23,11 @@ export default async function GalleryPage({ searchParams }: GalleryPageProps) {
   const initialCategory = getInitialCategory(category);
 
   return (
-    <PageShell>
-      <section className="section-shell">
-        <header className={`section-heading ${styles.pageIntro}`}>
-          <h1>Galeria prac</h1>
-        </header>
-        <GalleryGrid initialCategory={initialCategory} />
-      </section>
-    </PageShell>
+    <section className="section-shell">
+      <header className={`section-heading ${styles.pageIntro}`}>
+        <h1>Galeria prac</h1>
+      </header>
+      <GalleryGrid initialCategory={initialCategory} />
+    </section>
   );
 }

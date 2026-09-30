@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { CTAButton } from "@/components/cta-button";
-import { HeroPage } from "@/components/hero-page";
-import { PageShell } from "@/components/page-shell";
+import { PageHero } from "@/components/page-hero";
 
 import styles from "./about.module.css";
 
@@ -32,8 +31,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageShell>
-      <HeroPage
+    <>
+      <PageHero
         eyebrow="O mnie"
         title="Poznajmy się bliżej."
         description="Wierzę, że najlepsze efekty zaczynają się od uważnej rozmowy, zaufania i dobrze dobranego planu."
@@ -92,6 +91,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-    </PageShell>
+    </>
   );
 }
