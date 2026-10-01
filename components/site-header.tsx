@@ -76,7 +76,7 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className={`${styles.siteHeader} relative flex-wrap`}
+      className={`${styles.siteHeader} ${isMenuOpen ? styles.menuOpen : ""} relative flex-wrap`}
     >
       <Link
         className={styles.brand}

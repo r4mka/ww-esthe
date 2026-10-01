@@ -23,6 +23,10 @@
   transition: border-bottom-width 80ms linear;
 }
 
+.menuOpen {
+  overflow: visible;
+}
+
 .collapsed .brand,
 .collapsed .menuButton,
 .collapsed .nav {
