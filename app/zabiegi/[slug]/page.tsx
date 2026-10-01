@@ -7,6 +7,7 @@ import { CTAButton } from "@/components/cta-button";
 import { FaqItem } from "@/components/faq-item";
 import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
 import { BeforeAfterSlider } from "./components/before-after-slider";
+import { Breadcrumbs } from "./components/breadcrumbs";
 import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
@@ -107,6 +108,7 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
         className={`${styles.hero} ${styles.anchorSection} section-shell`}
       >
         <div className={styles.heroCopy}>
+          <Breadcrumbs currentPage={treatment.title} />
           <h1 className={styles.heroTitle}>{treatment.title}</h1>
           <TreatmentFacts
             id="informacje"
