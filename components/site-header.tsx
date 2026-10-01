@@ -86,7 +86,7 @@ export function SiteHeader() {
       >
         <Image
           className={styles.brandLogo}
-          src="/images/logo2.png"
+          src="/images/logos/horizontal.svg"
           alt="WW-Esthe"
           width={130}
           height={68}

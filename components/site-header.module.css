@@ -34,7 +34,8 @@
 }
 
 .brand {
-  display: block;
+  align-items: center;
+  display: flex;
   opacity: calc(1 - var(--collapse));
   white-space: nowrap;
 }
@@ -42,7 +43,7 @@
 .brandLogo {
   display: block;
   height: auto;
-  width: 6.5rem;
+  width: 13rem;
 }
 
 .menuButton {
@@ -115,7 +116,7 @@
   }
 
   .brandLogo {
-    width: 8rem;
+    width: 16rem;
   }
 
   .menuButton {
