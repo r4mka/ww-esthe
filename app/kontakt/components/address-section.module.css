@@ -36,18 +36,6 @@
   align-items: flex-start;
 }
 
-.detailItem:hover,
-.detailItem:focus-visible {
-  color: var(--beige);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.detailItem:focus-visible {
-  outline: 2px solid var(--beige);
-  outline-offset: 3px;
-}
-
 .detailIcon {
   fill: none;
   flex: 0 0 1.15rem;

@@ -99,10 +99,6 @@
   padding: 0.25rem 0;
 }
 
-.navList a:hover {
-  color: var(--foreground);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .siteHeader {
     transition: none;
@@ -144,7 +140,8 @@
   }
 
   .navList a {
-    font-size: inherit;
+    color: var(--foreground);
+    font-size: 1.0625rem;
     padding: 0;
   }
 }

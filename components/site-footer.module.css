@@ -66,6 +66,18 @@
   margin: 0;
 }
 
+.copyrightBrand {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.footerLogo {
+  flex: 0 0 auto;
+  height: 1.75rem;
+  width: auto;
+}
+
 .siteFooter p,
 .address {
   margin: 0;
@@ -76,10 +88,9 @@
   line-height: 1.6;
 }
 
-.footerGroup a:hover,
-.address a:hover {
-  color: var(--foter-heading);
-  text-decoration: underline;
+.footerGroup a,
+.address a {
+  --link-hover-color: var(--foter-heading);
 }
 
 @media (min-width: 640px) {

@@ -1,7 +1,6 @@
 export const siteConfig = {
-  businessName: "WW - ESTHE",
-  description:
-    "Profesjonalne zabiegi estetyczne i makijaż permanentny w Szczecinie.",
+  businessName: "Wiktoria Warylak Esthe",
+  description: "Medycyna estetyczna i makijaż permanentny w Szczecinie.",
   locale: "pl-PL",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   phone: {
@@ -9,8 +8,8 @@ export const siteConfig = {
     href: "tel:+48780182458",
   },
   email: {
-    display: "wiktoria.warylak@esthe.pl",
-    href: "mailto:wiktoria.warylak@esthe.pl",
+    display: "wiktoria@warylakesthe.pl",
+    href: "mailto:wiktoria@warylakesthe.pl",
   },
   address: {
     lines: ["ul. Racławicka 1/4", "70-811 Szczecin"],

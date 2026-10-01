@@ -1,4 +1,5 @@
 import { siteConfig } from "@/data/site-config";
+import Image from "next/image";
 import Link from "next/link";
 import {
   AddressIcon,
@@ -76,10 +77,19 @@ export function SiteFooter() {
             Polityka prywatności
           </Link>
           <span className={styles.footerDivider} aria-hidden="true" />
-          <p className={styles.copyright}>
-            © {siteConfig.legal.copyrightYear} {siteConfig.businessName}.
-            Wszelkie prawa zastrzeżone.
-          </p>
+          <div className={styles.copyrightBrand}>
+            <Image
+              className={styles.footerLogo}
+              src="/images/logos/logo_w-light.svg"
+              alt=""
+              width={716}
+              height={834}
+            />
+            <p className={styles.copyright}>
+              © {siteConfig.legal.copyrightYear} {siteConfig.businessName}.
+              Wszelkie prawa zastrzeżone.
+            </p>
+          </div>
         </nav>
       </div>
     </footer>

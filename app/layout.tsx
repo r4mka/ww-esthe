@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: siteConfig.businessName,
   description: siteConfig.description,
+  icons: {
+    icon: "/images/logos/favicon.svg",
+  },
   alternates: {
     canonical: "/",
   },
@@ -31,6 +34,18 @@ export const metadata: Metadata = {
     siteName: siteConfig.businessName,
     locale: siteConfig.locale,
     type: "website",
+    images: [
+      {
+        url: "/images/hero-mobile/hero-home.jpg",
+        alt: "Portret klientki WW-Esthe",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.businessName,
+    description: siteConfig.description,
+    images: ["/images/hero-mobile/hero-home.jpg"],
   },
 };
 
