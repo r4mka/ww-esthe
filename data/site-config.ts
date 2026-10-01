@@ -2,7 +2,7 @@ export const siteConfig = {
   businessName: "Wiktoria Warylak Esthe",
   description: "Medycyna estetyczna i makijaż permanentny w Szczecinie.",
   locale: "pl-PL",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ww-esthe.vercel.app",
   phone: {
     display: "+48 780 182 458",
     href: "tel:+48780182458",
