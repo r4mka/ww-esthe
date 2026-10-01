@@ -8,6 +8,7 @@ import { FaqItem } from "@/components/faq-item";
 import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
 import { BeforeAfterSlider } from "./components/before-after-slider";
 import { Breadcrumbs } from "./components/breadcrumbs";
+import { TreatmentTableOfContents } from "./components/treatment-table-of-contents";
 import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
@@ -144,6 +145,10 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
           />
         </div>
       </section>
+
+      <TreatmentTableOfContents
+        hasBeforeAfter={Boolean(treatment.beforeAfter)}
+      />
 
       <section
         id="opis-zabiegu"
