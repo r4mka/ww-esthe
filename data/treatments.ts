@@ -5,6 +5,12 @@ export type Treatment = {
   forWho: string[];
   imageAlt: string;
   secondaryImage: { src: string; alt: string };
+  beforeAfter?: {
+    title: string;
+    description: string[];
+    before: { src: string; alt: string };
+    after: { src: string; alt: string };
+  };
   duration: string;
   effectDuration: string;
   recoveryTime: string;
@@ -97,6 +103,20 @@ export const treatments: Treatment[] = [
           "Trwałość efektu zależy między innymi od użytego preparatu, stylu życia i indywidualnych cech organizmu.",
       },
     ],
+    beforeAfter: {
+      title: "Efekt makijażu permanentnego brwi",
+      description: [
+        "Makijaż permanentny pozwala podkreślić kształt brwi i nadać im bardziej wyrazistą linię. Projekt oraz intensywność pigmentacji dobierane są indywidualnie do rysów twarzy i oczekiwanego efektu.",
+      ],
+      before: {
+        src: "/images/before_after/before2.png",
+        alt: "Twarz przed rekonstrukcją brwi, bez brwi.",
+      },
+      after: {
+        src: "/images/before_after/after2.png",
+        alt: "Twarz po rekonstrukcji brwi makijażem permanentnym.",
+      },
+    },
   },
   {
     slug: "stymulatory-tkankowe",

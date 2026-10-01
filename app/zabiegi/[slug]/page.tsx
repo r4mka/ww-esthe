@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { CTAButton } from "@/components/cta-button";
 import { FaqItem } from "@/components/faq-item";
 import { getTreatment, getTreatmentImage, treatments } from "@/data/treatments";
+import { BeforeAfterSlider } from "./components/before-after-slider";
 import styles from "./treatment-detail.module.css";
 
 type TreatmentPageProps = {
@@ -174,6 +175,28 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
           </ol>
         </div>
       </section>
+
+      {treatment.beforeAfter && (
+        <section
+          id="przed-i-po"
+          className={`${styles.content} ${styles.beforeAfter} ${styles.anchorSection} section-shell`}
+          aria-labelledby="before-after-title"
+        >
+          <div className={styles.beforeAfterCopy}>
+            <h2 id="before-after-title">Przed i po</h2>
+            <h3>{treatment.beforeAfter.title}</h3>
+            {treatment.beforeAfter.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <BeforeAfterSlider
+            beforeSrc={treatment.beforeAfter.before.src}
+            beforeAlt={treatment.beforeAfter.before.alt}
+            afterSrc={treatment.beforeAfter.after.src}
+            afterAlt={treatment.beforeAfter.after.alt}
+          />
+        </section>
+      )}
 
       <section
         id="przeciwwskazania"
