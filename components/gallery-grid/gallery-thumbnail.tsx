@@ -6,15 +6,21 @@ import type { GalleryItem } from "./gallery-items";
 type GalleryThumbnailProps = {
   item: GalleryItem;
   onOpen: () => void;
+  tabIndex?: number;
 };
 
-export function GalleryThumbnail({ item, onOpen }: GalleryThumbnailProps) {
+export function GalleryThumbnail({
+  item,
+  onOpen,
+  tabIndex,
+}: GalleryThumbnailProps) {
   return (
     <button
       className={styles.thumbnail}
       type="button"
       onClick={onOpen}
       aria-label={`Otwórz zdjęcie: ${item.alt}`}
+      tabIndex={tabIndex}
     >
       <Image
         src={item.src}

@@ -33,6 +33,21 @@
   pointer-events: none;
 }
 
+.skipLink {
+  background: var(--foreground);
+  color: var(--surface);
+  left: 0.5rem;
+  padding: 0.75rem 1rem;
+  position: fixed;
+  top: 0.5rem;
+  transform: translateY(calc(-100% - 1rem));
+  z-index: 20;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
 .brand {
   align-items: center;
   display: flex;

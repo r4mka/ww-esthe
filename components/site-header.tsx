@@ -78,10 +78,13 @@ export function SiteHeader() {
       ref={headerRef}
       className={`${styles.siteHeader} ${isMenuOpen ? styles.menuOpen : ""} relative flex-wrap`}
     >
+      <a className={styles.skipLink} href="#main-content">
+        Pomiń nawigację
+      </a>
       <Link
         className={styles.brand}
         href="/"
-        aria-label="WW-Esthe home"
+        aria-label="Strona główna WW-Esthe"
         onClick={closeMenu}
       >
         <Image
@@ -108,7 +111,7 @@ export function SiteHeader() {
       <nav
         className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
         id="primary-navigation"
-        aria-label="Primary navigation"
+        aria-label="Nawigacja główna"
       >
         <ul className={styles.navList}>
           <li>

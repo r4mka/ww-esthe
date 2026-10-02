@@ -4,16 +4,26 @@ import type { VisitStepData } from "./visit-steps";
 import styles from "./visit.module.css";
 
 interface VisitStepProps {
+  isActive: boolean;
   isLastStep: boolean;
   onNext: () => void;
   step: VisitStepData;
 }
 
-export const VisitStep = ({ isLastStep, onNext, step }: VisitStepProps) => {
+export const VisitStep = ({
+  isActive,
+  isLastStep,
+  onNext,
+  step,
+}: VisitStepProps) => {
   const Icon = step.icon;
 
   return (
-    <article className={styles.visitSlide}>
+    <article
+      className={styles.visitSlide}
+      aria-hidden={!isActive}
+      inert={!isActive}
+    >
       <div className={styles.visitSlideContent}>
         <div className={styles.stepIcon} aria-hidden="true">
           <Icon size={22} strokeWidth={1.6} />

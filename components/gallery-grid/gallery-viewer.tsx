@@ -17,11 +17,21 @@ export function GalleryViewer({
 }: GalleryViewerProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const viewerScrollRef = useRef<HTMLDivElement>(null);
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    const activeElement = document.activeElement;
+    previouslyFocusedRef.current =
+      activeElement instanceof HTMLElement ? activeElement : null;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      previouslyFocusedRef.current?.focus();
     };
   }, []);
 
@@ -36,6 +46,34 @@ export function GalleryViewer({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const viewer = viewerRef.current;
+      const focusableElements = viewer?.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      const firstElement = focusableElements?.[0];
+      const lastElement = focusableElements?.[focusableElements.length - 1];
+
+      if (!firstElement || !lastElement) {
+        event.preventDefault();
+        return;
+      }
+
+      if (!viewer?.contains(document.activeElement)) {
+        event.preventDefault();
+        firstElement.focus();
+      } else if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     };
 
@@ -46,12 +84,14 @@ export function GalleryViewer({
   return (
     <div
       className={styles.viewer}
+      ref={viewerRef}
       role="dialog"
       aria-modal="true"
       aria-label="Galeria zdjęć"
     >
       <button
         className={styles.closeButton}
+        ref={closeButtonRef}
         type="button"
         onClick={onClose}
         aria-label="Zamknij galerię"

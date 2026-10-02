@@ -100,6 +100,11 @@ export function GalleryPreview({
               item={item}
               key={item.src}
               onOpen={() => handleOpen(index)}
+              tabIndex={
+                index >= previewStart && index < previewStart + previewCount
+                  ? undefined
+                  : -1
+              }
             />
           ))}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import { Children, type ReactNode, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Children, type ReactNode, useEffect, useState } from "react";
 
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
@@ -75,7 +75,6 @@ export function Carousel({
         <div
           className={styles.track}
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          aria-live="polite"
         >
           {slides.map((slide, index) => (
             <div
@@ -97,9 +96,12 @@ export function Carousel({
           >
             <ChevronLeft />
           </button>
-          <span aria-label={`Slajd ${currentIndex + 1} z ${slideCount}`}>
-            {String(currentIndex + 1).padStart(2, "0")} / {" "}
+          <span aria-hidden="true">
+            {String(currentIndex + 1).padStart(2, "0")} /{" "}
             {String(slideCount).padStart(2, "0")}
+          </span>
+          <span className="sr-only" aria-live="polite" aria-atomic="true">
+            Opinia {currentIndex + 1} z {slideCount}
           </span>
           <button
             type="button"
