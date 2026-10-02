@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
@@ -11,6 +11,21 @@ import styles from "./visit.module.css";
 
 export const Visit = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const carouselTrackRef = useRef<HTMLDivElement>(null);
+  const previousActiveStepRef = useRef(activeStep);
+
+  useEffect(() => {
+    if (previousActiveStepRef.current !== activeStep) {
+      const activeSlide = carouselTrackRef.current?.children[activeStep];
+      const nextStepButton = activeSlide?.querySelector("button");
+
+      if (nextStepButton instanceof HTMLElement) {
+        nextStepButton.focus();
+      }
+
+      previousActiveStepRef.current = activeStep;
+    }
+  }, [activeStep]);
 
   const moveToStep = (direction: "next" | "previous") => {
     setActiveStep((currentStep) => {
@@ -39,12 +54,13 @@ export const Visit = () => {
       >
         <div
           className={styles.carouselTrack}
+          ref={carouselTrackRef}
           style={{ transform: `translateX(-${activeStep * 100}%)` }}
-          aria-live="polite"
         >
-          {visitSteps.map((step) => (
+          {visitSteps.map((step, index) => (
             <VisitStep
               isLastStep={activeStep === visitSteps.length - 1}
+              isActive={index === activeStep}
               key={step.number}
               onNext={() => moveToStep("next")}
               step={step}
